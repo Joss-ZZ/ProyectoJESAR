@@ -12,55 +12,96 @@
         <title>JSP Page</title>
         <!-- overlayScrollbars contiene el Bootstrap 4-->
         <link rel="stylesheet" href="css/adminlte.min.css">
+        
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="css/all.min.css">
+        <!-- Ionicons para iconos -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        
+        <link rel="stylesheet" type="text/css"href="css/estilos.css"> <!-- coloca tus propios estilos-->
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,900;1,400&display=swap" rel="stylesheet">
+        
+        <script src="js/validar_login.js"> </script>
+    
     </head>
     <body>
-        <section class="content">
+          <section class="content">
             <div class="container-fluid">
+               
                 <div class="row">
-                    <!-- left column -->
+               
                     <div class="col-md-4">
-                        <!-- jquery validation -->
+                    
+                    </div>
+                    <div class="col-md-4">
+                        <div id="alerta"></div>  
                         <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">Ingresar al Sistema</h3>
+                            <div id="titulo" class="card-header text-center">
+                                <h3>Ingresar al Sistema</h3>      
                             </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            <form role="form" id="quickForm">
+                            <div class="text-center">
+                                <br>
+                                <img src="img/iniciar_sesion.png" >
+                            </div>
+                           
+                            <form id="login" name="login" role="form"  >
                                 <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Usuario</label>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                    </div>
+                                    
+                                   <div class="input-group mb-4">
+                  
+                                         <div class="input-group-prepend">
+                                             <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                         </div>
+                                       <input id="correo" type="text"  name="correo"  class="form-control" id="inlineFormInputGroup" placeholder="Correo electrónico" required="">
+                                    </div> <!--input-group mb-4 -->
+
+                                    <div class="input-group mb-4">
+                                         <div class="input-group-prepend">
+                                             <div class="input-group-text"><i class="fas fa-unlock-alt"></i></div>
+                                         </div>
+                                        <input id="password" type="password" name="password" class="form-control" id="inlineFormInputGroup" placeholder="Contraseña"  required="" >  
+                                    </div> <!--input-group mb-4 -->
+
+       
+                                  
                                     <div class="form-group mb-0">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                                            <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
+                                            <label class="custom-control-label" for="exampleCheck1">Guardar sesion <a href="#">terms of service</a>.</label>
                                         </div>
                                     </div>
+                                    
+
                                 </div>
-                                <!-- /.card-body -->
+                      
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                                    <input class="form-control btn btn-success" type="submit" name="iniciar_sesion" onclick="validar_login();" value="Ingresar" > 
+                                   
                                 </div>
                             </form>
                         </div>
-                        <!-- /.card -->
+                     
                     </div>
-                    <!--/.col (left) -->
-                    <!-- right column -->
-                    <div class="col-md-6">
+                   
+                    <div class="col-md-4">
 
                     </div>
-                    <!--/.col (right) -->
-                </div>
-                <!-- /.row -->
-            </div><!-- /.container-fluid -->
+                 
+            
+            </div>
         </section>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </body>
 
 </html>
