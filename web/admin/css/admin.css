@@ -1,0 +1,12 @@
+.user-panel {
+    height: 50px;
+}
+
+.user-panel .info {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p#menuadmin {
+  color: #E2E1E0;
+}
