@@ -1,0 +1,9 @@
+#titulo{
+    font-family: fantasy;
+    font-size: 17px;
+    color:#262626;
+ 
+}
+.card-primary:not(.card-outline)>.card-header{
+ background-color: #0C9CE8;
+}
