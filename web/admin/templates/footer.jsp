@@ -22,6 +22,7 @@
 <script src="js/dataTables.responsive.min.js"></script>
 <script src="js/responsive.bootstrap4.min.js"></script>
 
+
 <script>
   $(function () {
     $("#example1").DataTable({
