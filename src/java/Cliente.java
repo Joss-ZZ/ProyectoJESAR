@@ -9,5 +9,5 @@
  * @author JhoxiZZ
  */
 public class Cliente {
-    public String nombre;
+    public String nombre,apellido;
 }

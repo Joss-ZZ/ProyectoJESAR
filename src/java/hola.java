@@ -9,5 +9,5 @@
  * @author Rodrigo
  */
 public class hola {
-    
+    public String nombre, apellido;
 }
