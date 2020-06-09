@@ -10,4 +10,13 @@
  */
 public class Cliente {
     public String nombre,apellido;
+
+    public Cliente() {
+    }
+
+    public Cliente(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+    
 }
