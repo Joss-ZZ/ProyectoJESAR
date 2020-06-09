@@ -10,4 +10,9 @@
  */
 public class hola {
     public String nombre, apellido;
+
+    public hola() {
+    }
+    
+    
 }
