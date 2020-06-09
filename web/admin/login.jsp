@@ -42,9 +42,8 @@
                             <div class="text-center">
                                 <br>
                                 <img src="img/iniciar_sesion.png" >
-                            </div>
-                           
-                            <form id="login" name="login" role="form"  >
+                            </div>                          
+                            <form action="../AutorizaUsuario" id="login" name="login" role="form" method="post">
                                 <div class="card-body">
                                     
                                    <div class="input-group mb-4">
@@ -52,7 +51,7 @@
                                          <div class="input-group-prepend">
                                              <div class="input-group-text"><i class="fas fa-user"></i></div>
                                          </div>
-                                       <input id="correo" type="text"  name="correo"  class="form-control" id="inlineFormInputGroup" placeholder="Correo electrónico" required="">
+                                       <input id="correo" type="text"  name="user"  class="form-control" id="inlineFormInputGroup" placeholder="Nombre de Usuario" required="">
                                     </div> <!--input-group mb-4 -->
 
                                     <div class="input-group mb-4">
@@ -75,7 +74,7 @@
                                 </div>
                       
                                 <div class="card-footer">
-                                    <input class="form-control btn btn-success" type="submit" name="iniciar_sesion" onclick="validar_login();" value="Ingresar" > 
+                                    <input class="form-control btn btn-success" type="submit" name="iniciar_sesion"  value="Ingresar" > 
                                    
                                 </div>
                             </form>

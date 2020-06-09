@@ -26,7 +26,13 @@
           <h3 class="card-title">Title</h3>
         </div>
         <div class="card-body">
-          Start creating your amazing application!
+          Hola Administrador
+        </div>
+        <div class="card-body">
+          Hola Vendedor
+        </div>
+        <div class="card-body">
+          Hola Almacenero
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
