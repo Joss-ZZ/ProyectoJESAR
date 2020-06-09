@@ -7,3 +7,7 @@
 .card-primary:not(.card-outline)>.card-header{
  background-color: #0C9CE8;
 }
+
+#form-header {
+    background-color: #343a40;
+}
