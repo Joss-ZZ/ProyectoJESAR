@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="img/AdminLTELogo.png"
+      <img src="/Admin-JESAR/admin/img/AdminLTELogo.png"
            alt="Calzados JESAR Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
@@ -42,7 +42,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="administradores.jsp" class="nav-link">
+            <a href="/Admin-JESAR/admin/administradores.jsp" class="nav-link">
               <i class="fas fa-user-tie nav-icon"></i>
               <p>
                 Mant. Administradores

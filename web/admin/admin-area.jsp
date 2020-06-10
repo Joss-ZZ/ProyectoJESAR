@@ -23,17 +23,13 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Title</h3>
+          <h3 class="card-title">Panel de Administración</h3>
         </div>
+
         <div class="card-body">
-          Hola Administrador
+          Hola ${usuario.usuario}
         </div>
-        <div class="card-body">
-          Hola Vendedor
-        </div>
-        <div class="card-body">
-          Hola Almacenero
-        </div>
+
         <!-- /.card-body -->
         <div class="card-footer">
           Footer

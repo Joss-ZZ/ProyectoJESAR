@@ -34,6 +34,15 @@ public class Empleado {
         this.privilegio = privilegio;
     }
 
+    public Empleado(int id, String usuario, String estado, int privilegio) {
+        this.id = id;
+        this.usuario = usuario;
+        this.estado = estado;
+        this.privilegio = privilegio;
+    }
+    
+    
+
     public int getId() {
         return id;
     }
@@ -130,25 +139,18 @@ public class Empleado {
         this.privilegio = privilegio;
     }
 
-    public List<Empleado> AutorizaUsuario(String usr, String pass) {
-        List<Empleado> pasajeros = new ArrayList<Empleado>();
+    public Empleado AutorizaUsuario(String usr, String pass) {
         try {
             String sql = "{CALL PRC_AUTORIZA_EMPLEADOS(?, ?)}";
             CallableStatement cs = conn.getConnection().prepareCall(sql);
             cs.setString(1, usr);
             cs.setString(2, pass);
             ResultSet rs = cs.executeQuery();
-            while (rs.next()) {
-                Empleado emp = new Empleado();
-                emp.setId(rs.getInt("ID"));
-                emp.setUsuario(rs.getString("USUARIO"));
-                emp.setEstado(rs.getString("ESTADO"));
-                emp.setPrivilegio(rs.getInt("PRIVILEGIO"));
-                pasajeros.add(emp);
+            Empleado emp = null;
+            if(rs.next()){
+                emp = new Empleado(rs.getInt("ID"), rs.getString("USUARIO"), rs.getString("ESTADO"), rs.getInt("PRIVILEGIO"));
             }
-            if(pasajeros.get(id).getEstado().equalsIgnoreCase("Activo")){
-                return pasajeros;
-            }
+            return emp;
         } catch (Exception e) {
             System.out.println("Error en Empleado.AutorizaUsuario: " + e.getMessage());
         }

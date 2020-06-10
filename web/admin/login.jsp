@@ -11,14 +11,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <!-- overlayScrollbars contiene el Bootstrap 4-->
-        <link rel="stylesheet" href="css/adminlte.min.css">
+        <link rel="stylesheet" type="text/css" href="/Admin-JESAR/admin/css/adminlte.min.css">
         
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="/Admin-JESAR/admin/css/all.min.css">
         <!-- Ionicons para iconos -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         
-        <link rel="stylesheet" type="text/css"href="css/estilos.css"> <!-- coloca tus propios estilos-->
+        <link rel="stylesheet" type="text/css" href="/Admin-JESAR/admin/css/estilos.css"> <!-- coloca tus propios estilos-->
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,900;1,400&display=swap" rel="stylesheet">
         
         <script src="js/validar_login.js"> </script>
@@ -41,9 +41,10 @@
                             </div>
                             <div class="text-center">
                                 <br>
-                                <img src="img/iniciar_sesion.png" >
-                            </div>                          
-                            <form action="../AutorizaUsuario" id="login" name="login" role="form" method="post">
+                                <img src="/Admin-JESAR/admin/img/iniciar_sesion.png" >
+                            </div> 
+                            ${mensaje}
+                            <form action="/Admin-JESAR/AutorizaUsuario" id="login" name="login" role="form" method="post">
                                 <div class="card-body">
                                     
                                    <div class="input-group mb-4">

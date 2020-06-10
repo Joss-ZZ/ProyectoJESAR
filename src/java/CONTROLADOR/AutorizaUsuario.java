@@ -36,17 +36,25 @@ public class AutorizaUsuario extends HttpServlet {
         HttpSession session = request.getSession();
         Conexion conn = new Conexion();
         Empleado emp = new Empleado(conn);
-        List<Empleado> empleados = new ArrayList<Empleado>();
-        empleados = emp.AutorizaUsuario(user, password);
+        Empleado empleado = new Empleado();
+        empleado=emp.AutorizaUsuario(user, password);
         RequestDispatcher rd;
         
-        if(empleados!=null){
-            session.setAttribute("usuario", empleados);
-            response.sendRedirect("admin/admin-area.jsp");          
-        }else{
-            mensaje = "Usuario/Contraseña incorrectas";
+        if(empleado!=null && empleado.getEstado().equalsIgnoreCase("Activo")){
+            mensaje="todo ok";
+            session.setAttribute("usuario", empleado);
+            rd = request.getRequestDispatcher("admin/admin-area.jsp");
+            rd.forward(request, response);       
+        }else if(empleado!=null && empleado.getEstado().equalsIgnoreCase("Inactivo")){
+            mensaje = "Hola "+empleado.getUsuario()+", actualmente su cuenta está inactiva.";
             request.setAttribute("mensaje", mensaje);
-            response.sendRedirect("admin/login.jsp");    
-        }
+            rd = request.getRequestDispatcher("admin/login.jsp");
+            rd.forward(request, response); 
+        }else {
+            mensaje = "Usuario/Contraseña inválidas";
+            request.setAttribute("mensaje", mensaje);
+            rd = request.getRequestDispatcher("admin/login.jsp");
+            rd.forward(request, response); 
+        }      
     }
 }

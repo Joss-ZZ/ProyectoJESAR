@@ -1,4 +1,11 @@
+<%@page import="MODELO.Empleado"%>
 <body class="hold-transition sidebar-mini">
+      <%
+      Empleado p = (Empleado)session.getAttribute("usuario");
+      if(p==null){
+          response.sendRedirect("login.jsp");
+      }
+      %>
     <!-- Site wrapper -->
     <div class="wrapper">  
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -16,7 +23,7 @@
 
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="hidden-xs"><i class="fa fa-circle text-success"></i> Usuario</span>
+                                <span class="hidden-xs"><i class="fa fa-circle text-success"></i> ${usuario.usuario}</span>
                             </a>
                             <ul class="dropdown-menu">
 
@@ -26,7 +33,7 @@
                                         <a href="#" class="btn btn-success btn-flat">Ajustes</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-success btn-flat">Cerrar Sesión</a>
+                                        <a href="../CerrarSesion" class="btn btn-success btn-flat">Cerrar Sesión</a>
                                     </div>
                                 </li>
                             </ul>
