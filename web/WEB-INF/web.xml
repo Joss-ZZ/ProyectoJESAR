@@ -8,6 +8,14 @@
         <servlet-name>CerrarSesion</servlet-name>
         <servlet-class>CONTROLADOR.CerrarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Prueba</servlet-name>
+        <servlet-class>CONTROLADOR.Prueba</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Prueba1</servlet-name>
+        <servlet-class>CONTROLADOR.Prueba1</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AutorizaUsuario</servlet-name>
         <url-pattern>/AutorizaUsuario</url-pattern>
@@ -15,6 +23,10 @@
     <servlet-mapping>
         <servlet-name>CerrarSesion</servlet-name>
         <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Prueba1</servlet-name>
+        <url-pattern>/Prueba</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

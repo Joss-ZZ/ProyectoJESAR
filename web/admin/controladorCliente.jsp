@@ -20,10 +20,10 @@
                 <div class="overlay" id="overlay-nuevo-cliente">
                     <div class="popup" id="popup-nuevo-cliente">
                         <a href="#" id="btn-cerrar-popup-nuevo-cliente" class="btn-cerrar-popup"><i class="fas fa-times-circle"></i></a>
-                        <h3>Nuevo Cliente Cl002</h3>
+                        <h3>Nuevo Cliente Cl002</h3>              
                         <form action="">
                             <div class="contenedor-inputs">
-                                <input type="text" placeholder="Nombre">
+                                <input type="text" placeholder="Nombre" value=${nombre}>
                                 <input type="text" placeholder="Apellido">
                                 <input type="text" placeholder="Tipo Documento">
                                 <input type="text" placeholder="Documento">
@@ -39,7 +39,7 @@
             </div>
             <div class="card-body">
 
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="listclientes" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Código</th>
@@ -50,51 +50,37 @@
                             <th>Teléfono</th>
                             <th>Dirección</th>
                             <th>Correo</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
+                            <th>Acciones</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Cl001</td>
-                            <td>Rodrigo</td>
-                            <td>Garcia</td>
-                            <td>DNI</td>
-                            <td>71850039</td>
-                            <td>923548737</td>
-                            <td>Mz P lote 9</td>
-                            <td>rodrigo.sandro_10@hotmail.com</td>
-                            <th>
-                                <a class="btn btn-success" id="btn-abrir-popup">Editar</a>
-                                <div class="overlay" id="overlay">
-                                    <div class="popup" id="popup">
-                                        <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times-circle"></i></a>
-                                        <h3>Editar Cliente Cl001</h3>
-                                        <form action="">
-                                            <div class="contenedor-inputs">
-                                                <input type="text" placeholder="Nombre">
-                                                <input type="text" placeholder="Apellido">
-                                                <input type="text" placeholder="Tipo Documento">
-                                                <input type="text" placeholder="Documento">
-                                                <input type="text" placeholder="Teléfono">
-                                                <input type="text" placeholder="Dirección">
-                                                <input type="email" placeholder="Correo">
-                                            </div>
-                                            <a href="#" id="btn btn-success" class="btn btn-success">Realizar Cambios</a>
-                                        </form>
-                                    </div>
-                                </div>
-                                <script src="js/popup.js"></script>
-                            </th>
-                            <th><a class="btn btn-danger" href="">Eliminar</a></th>
-                        </tr>
-
-
-                    </tbody>
+                    </thead>                
                 </table>
             </div>
+
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
+        <script src="/Admin-JESAR/admin/js/jquery.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    var tabla = $('#listclientes').DataTable({
+                        ajax:{
+                            method: "POST",
+                            url: "/Admin-JESAR/Prueba",
+                            dataSrc: "datos"
+                        },
+                        columns: [
+                            {"data": "id"},
+                            {"data": "nombre"},
+                            {"data": "apellidos"},
+                            {"data": "tipo_documento"},
+                            {"data": "documento"},
+                            {"data": "telefono"},
+                            {"data": "direccion"},
+                            {"data": "correo"},
+                            {"data": "acciones"}
+                        ]
+                    });
+                });
+            </script>
 
         <%@ include file="templates/footer.jsp"%>
