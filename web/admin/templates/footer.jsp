@@ -21,7 +21,8 @@
 <script src="/Admin-JESAR/admin/js/dataTables.bootstrap4.min.js"></script>
 <script src="/Admin-JESAR/admin/js/dataTables.responsive.min.js"></script>
 <script src="/Admin-JESAR/admin/js/responsive.bootstrap4.min.js"></script>
-
+<!-- Nuestros scripts -->
+<script src="/Admin-JESAR/admin/js/main.js"></script>
 
 <script>
   $(function () {

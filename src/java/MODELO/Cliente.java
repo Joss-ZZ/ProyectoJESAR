@@ -17,12 +17,23 @@ import java.util.List;
  * @author JhoxiZZ
  */
 public class Cliente {
+
     private int id;
-    private String nombre, apellidos, tipo_documento, documento, telefono, direccion,correo;
-    Conexion conn;
+    private String nombre, apellidos, tipo_documento, documento, telefono, direccion, correo;
+    Conexion conn = new Conexion();
 
     public Cliente(Conexion conn) {
         this.conn = conn;
+    }
+
+    public Cliente(String nombre, String apellidos, String tipo_documento, String documento, String telefono, String direccion, String correo) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.tipo_documento = tipo_documento;
+        this.documento = documento;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.correo = correo;
     }
 
     public Cliente() {
@@ -91,16 +102,14 @@ public class Cliente {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
-    public JsonArray ListarClientes(){
-        String sql="SELECT *FROM Z_CLIENTE";
-        System.out.println("Todo ok");
+
+    public JsonArray ListarClientes() {
+        String sql = "SELECT *FROM Z_CLIENTE";
         try {
-            System.out.println("Todo ok");
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             JsonArray array = new JsonArray();
-            while(rs.next()){
+            while (rs.next()) {
                 JsonObject item = new JsonObject();
                 item.addProperty("id", rs.getInt("id"));
                 item.addProperty("nombre", rs.getString("nombre"));
@@ -110,13 +119,62 @@ public class Cliente {
                 item.addProperty("telefono", rs.getString("telefono"));
                 item.addProperty("direccion", rs.getString("direccion"));
                 item.addProperty("correo", rs.getString("correo"));
-                item.addProperty("acciones", " <a class='btn btn-success' id='"+rs.getInt("id")+"'>Editar</a><a class='btn btn-danger' id='"+rs.getInt("id")+"' href=''>Eliminar</a>");
-                array.add(item);  
+                item.addProperty("acciones", " <button type='button' class='btn btn-warning' id='" + rs.getInt("id") + "'>Editar</button><button type='button' class='btn btn-danger eliminarCliente' id='" + rs.getInt("id") + "'>Eliminar</button>");
+                array.add(item);
             }
             return array;
         } catch (Exception e) {
             System.out.println("Problema en la consulta");
         }
         return null;
+    }
+
+    public int EliminarClientes(int id) {
+        String sql = "DELETE FROM Z_CLIENTE WHERE ID=" + id + "";
+        try {
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            int result = ps.executeUpdate();
+            if (result == 1) {
+                return result;
+            }
+            return result;
+        } catch (Exception e) {
+            System.out.println("ERROR EN CLIENTE.ELIMINARCLIENTESS: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public void RegistrarCliente(Cliente cli) {
+        String sql = "INSERT INTO Z_CLIENTE(NOMBRE,APELLIDOS,TIPO_DOCUMENTO,DOCUMENTO,TELEFONO,DIRECCION,CORREO) VALUES(?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setString(1, cli.getNombre());
+            ps.setString(2, cli.getApellidos());
+            ps.setString(3, cli.getTipo_documento());
+            ps.setString(4, cli.getDocumento());
+            ps.setString(5, cli.getTelefono());
+            ps.setString(6, cli.getDireccion());
+            ps.setString(7, cli.getCorreo());
+            int result = ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("ERROR AL REGISTRAR CLIENTE : " + e.getMessage());
+        }
+    }
+
+    public int MaxIDCliente() {
+        String query = "SELECT MAX(id) FROM Z_CLIENTE";
+        int id = 0;
+        try {
+            PreparedStatement ps = conn.getConnection().prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                System.out.println(rs.getInt("MAX(id)"));
+                id = rs.getInt("MAX(id)");
+            }
+            return id;
+        } catch (Exception e) {
+            System.out.println("ERROR EN RETONAR EL ID DEL CLIENTE: " + e.getMessage());
+        }
+        return 0;
     }
 }

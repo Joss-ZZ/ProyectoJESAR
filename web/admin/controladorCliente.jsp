@@ -15,28 +15,16 @@
                 <h3 class="card-title">Mantener Clientes</h3>
             </div>
             <!-- /.card-header -->
-            <div>
-                <a href="#" class="btn btn-primary" id="btn-nuevo-cliente" style="width: 100%">Nuevo Cliente</a>
-                <div class="overlay" id="overlay-nuevo-cliente">
-                    <div class="popup" id="popup-nuevo-cliente">
-                        <a href="#" id="btn-cerrar-popup-nuevo-cliente" class="btn-cerrar-popup"><i class="fas fa-times-circle"></i></a>
-                        <h3>Nuevo Cliente Cl002</h3>              
-                        <form action="">
-                            <div class="contenedor-inputs">
-                                <input type="text" placeholder="Nombre" value=${nombre}>
-                                <input type="text" placeholder="Apellido">
-                                <input type="text" placeholder="Tipo Documento">
-                                <input type="text" placeholder="Documento">
-                                <input type="text" placeholder="Teléfono">
-                                <input type="text" placeholder="Dirección">
-                                <input type="email" placeholder="Correo">
-                            </div>
-                            <a href="#" id="btn btn-success-nuevo-cliente" class="btn btn-success">Realizar Cambios</a>
-                        </form>
-                    </div>
-                </div>
-                <script src="js/popup.js"></script>
-            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">            
+                        <button id="btnNuevo" type="button" class="btn btn-success" data-toggle="modal">Nuevo</button>    
+                    </div>    
+                </div>    
+            </div>                
+
+
             <div class="card-body">
 
                 <table id="listclientes" class="table table-bordered table-striped">
@@ -56,31 +44,59 @@
                 </table>
             </div>
 
+            <!-- MODAL CRUD -->>                    
+            <div class="modal fade" id="clientesCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="formPersonas">    
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre" class="col-form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="nombre">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pais" class="col-form-label">Apellidos:</label>
+                                    <input type="text" class="form-control" id="apellidos">
+                                </div>                
+                                <div class="form-group">
+                                    <label for="edad" class="col-form-label">Tipo de documento:</label>
+                                    <input type="text" class="form-control" id="tipodoc">
+                                </div>        
+                                <div class="form-group">
+                                    <label for="edad" class="col-form-label">Documento:</label>
+                                    <input type="text" class="form-control" id="doc">
+                                </div>   
+                                <div class="form-group">
+                                    <label for="edad" class="col-form-label">Telefono</label>
+                                    <input type="text" class="form-control" id="telf">
+                                </div>   
+                                <div class="form-group">
+                                    <label for="edad" class="col-form-label">Direccion:</label>
+                                    <input type="text" class="form-control" id="dir">
+                                </div>   
+                                <div class="form-group">
+                                    <label for="edad" class="col-form-label">Correo:</label>
+                                    <input type="text" class="form-control" id="correo">
+                                </div>   
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>
+                            </div>
+                        </form>    
+                    </div>
+                </div>
+            </div>  
+
+
+
             <!-- /.card-body -->
         </div>
-        <!-- /.card -->
-        <script src="/Admin-JESAR/admin/js/jquery.min.js"></script>
-            <script>
-                $(document).ready(function() {
-                    var tabla = $('#listclientes').DataTable({
-                        ajax:{
-                            method: "POST",
-                            url: "/Admin-JESAR/Prueba",
-                            dataSrc: "datos"
-                        },
-                        columns: [
-                            {"data": "id"},
-                            {"data": "nombre"},
-                            {"data": "apellidos"},
-                            {"data": "tipo_documento"},
-                            {"data": "documento"},
-                            {"data": "telefono"},
-                            {"data": "direccion"},
-                            {"data": "correo"},
-                            {"data": "acciones"}
-                        ]
-                    });
-                });
-            </script>
+        <!-- /.card -->     
 
         <%@ include file="templates/footer.jsp"%>

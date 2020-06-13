@@ -34,17 +34,50 @@ public class Prueba1 extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        System.out.println("Todo ok");
-        Conexion conn = new Conexion();
-        Cliente clientes = new Cliente(conn);
-        com.google.gson.JsonObject gson = new JsonObject();
-        String datos = "";
-        JsonArray array = new JsonArray();
-        array = clientes.ListarClientes();
-        gson.add("datos", array);
-        out.print(gson.toString());
+            response.setContentType("application/json;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+
+        if(request.getParameter("action").equalsIgnoreCase("nuevo")){
+            String nombre = request.getParameter("nombre");
+            String apellidos = request.getParameter("apellidos");
+            String tipodoc = request.getParameter("tipodoc");
+            String doc = request.getParameter("doc");
+            String telefono = request.getParameter("telefono");
+            String direccion = request.getParameter("direccion");
+            String correo = request.getParameter("correo");
+            
+            Cliente cliente = new Cliente(nombre,apellidos,tipodoc,doc,telefono,direccion,correo);
+            cliente.setId(cliente.MaxIDCliente());
+            
+            com.google.gson.JsonObject gson = new JsonObject();
+            JsonArray array = new JsonArray();
+            JsonObject item = new JsonObject();
+            
+            item.addProperty("id", cliente.getId());
+            item.addProperty("nombre", cliente.getNombre());
+            item.addProperty("apellidos", cliente.getApellidos());
+            item.addProperty("tipodoc", cliente.getTipo_documento());
+            item.addProperty("doc", cliente.getDocumento());
+            item.addProperty("telefono", cliente.getTelefono());
+            item.addProperty("direccion", cliente.getDireccion());
+            item.addProperty("correo", cliente.getCorreo());
+            array.add(item);
+            gson.add("datos", array);
+            out.print(gson.toString());
+            out.close();
+        }
+            
+        if(request.getParameter("action").equalsIgnoreCase("listar")){
+            Conexion conn = new Conexion();
+            Cliente clientes = new Cliente(conn);
+            com.google.gson.JsonObject gson = new JsonObject();
+            String datos = "";
+            JsonArray array = new JsonArray();
+            array = clientes.ListarClientes();
+            gson.add("datos", array);
+            out.print(gson.toString());
+            out.close();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
