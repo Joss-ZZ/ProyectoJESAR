@@ -15,7 +15,7 @@ public class Empleado {
     public Empleado(Conexion conn) {
         this.conn = conn;
     }
-
+     
     public Empleado() {
     }
 
@@ -40,8 +40,6 @@ public class Empleado {
         this.estado = estado;
         this.privilegio = privilegio;
     }
-    
-    
 
     public int getId() {
         return id;

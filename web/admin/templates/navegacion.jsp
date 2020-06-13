@@ -45,7 +45,7 @@
             <a href="/Admin-JESAR/admin/administradores.jsp" class="nav-link">
               <i class="fas fa-user-tie nav-icon"></i>
               <p>
-                Mant. Administradores
+                Mantener Empleados
               </p>
             </a>
           </li>
@@ -54,7 +54,7 @@
             <a href="#" class="nav-link">
               <i class="fas fa-user-tie nav-icon"></i>
               <p>
-                Mantener Empleados
+                Mantener Operarios
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
