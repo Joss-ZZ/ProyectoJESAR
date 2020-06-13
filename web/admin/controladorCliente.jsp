@@ -56,6 +56,10 @@
                         <form id="formPersonas">    
                             <div class="modal-body">
                                 <div class="form-group">
+                                    <label for="nombre" class="col-form-label">id:</label>
+                                    <input type="number" class="form-control" id="id">
+                                </div>
+                                <div class="form-group">
                                     <label for="nombre" class="col-form-label">Nombre:</label>
                                     <input type="text" class="form-control" id="nombre">
                                 </div>

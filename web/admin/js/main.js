@@ -1,22 +1,11 @@
 $(document).ready(function () {
+      
     var tabla = $('#listclientes').DataTable({
-        ajax: {
-            method: "POST",
-            url: "/Admin-JESAR/Prueba",
-            data: {"action": "listar"},
-            dataSrc: "datos"
-        },
-        columns: [
-            {"data": "id"},
-            {"data": "nombre"},
-            {"data": "apellidos"},
-            {"data": "tipo_documento"},
-            {"data": "documento"},
-            {"data": "telefono"},
-            {"data": "direccion"},
-            {"data": "correo"},
-            {"data": "acciones"}
-        ],
+       "columnDefs":[{
+        "targets": -1,
+        "data":null,
+        "defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>"  
+       }],
 
         //Para cambiar el lenguaje a español
         "language": {
@@ -43,7 +32,6 @@ $(document).ready(function () {
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Nueva Persona");
         $("#clientesCRUD").modal("show");
-        id = null;
         opcion = 1; //alta
     });
 
@@ -70,6 +58,7 @@ $(document).ready(function () {
 
     $("#formPersonas").submit(function (e) {
         e.preventDefault();
+        id = $.trim($("#id").val());
         nombre = $.trim($("#nombre").val());
         apellidos = $.trim($("#apellidos").val());
         tipodoc = $.trim($("#tipodoc").val());
@@ -79,16 +68,25 @@ $(document).ready(function () {
         correo = $.trim($("#correo").val());
         $.ajax({
             url: "/Admin-JESAR/Prueba",
-            method: "POST",
-            data: {"action": "nuevo", "nombre": nombre, "apellidos": apellidos, "tipodoc": tipodoc, "doc": doc, "telefono": telefono, "direccion": direccion, "correo": correo},
+            type: "POST",
+            dataType: "json",
+            data: {action: "nuevo",id:id, nombre: nombre, apellidos: apellidos, tipodoc: tipodoc, doc: doc, telefono: telefono, direccion: direccion, correo: correo},
             success: function (data) {
-                alert('NADA PAPU');
+                id = data.datos[0].id;
+                nombre = data.datos[0].nombre;
+                apellidos = data.datos[0].apellidos;
+                tipodoc = data.datos[0].tipodoc;
+                doc =data.datos[0].doc;
+                telefono =data.datos[0].telefono;
+                direccion =data.datos[0].direccion;
+                correo =data.datos[0].correo;
+                tabla.row.add([id,nombre,apellidos,tipodoc,doc,telefono,direccion,correo]).draw();
             },
             error: function (error) {
                 alert('No se pudo eliminar');
             }
         });
-        $("#modalCRUD").modal("hide");
+        $("#clientesCRUD").modal("hide");
 
     });
 

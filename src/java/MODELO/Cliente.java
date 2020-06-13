@@ -119,7 +119,7 @@ public class Cliente {
                 item.addProperty("telefono", rs.getString("telefono"));
                 item.addProperty("direccion", rs.getString("direccion"));
                 item.addProperty("correo", rs.getString("correo"));
-                item.addProperty("acciones", " <button type='button' class='btn btn-warning' id='" + rs.getInt("id") + "'>Editar</button><button type='button' class='btn btn-danger eliminarCliente' id='" + rs.getInt("id") + "'>Eliminar</button>");
+                //item.addProperty("acciones", " <button type='button' class='btn btn-warning' id='" + rs.getInt("id") + "'>Editar</button><button type='button' class='btn btn-danger eliminarCliente' id='" + rs.getInt("id") + "'>Eliminar</button>");
                 array.add(item);
             }
             return array;

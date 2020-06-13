@@ -47,6 +47,7 @@ public class Prueba1 extends HttpServlet {
             String correo = request.getParameter("correo");
             
             Cliente cliente = new Cliente(nombre,apellidos,tipodoc,doc,telefono,direccion,correo);
+            cliente.RegistrarCliente(cliente);
             cliente.setId(cliente.MaxIDCliente());
             
             com.google.gson.JsonObject gson = new JsonObject();
@@ -63,8 +64,8 @@ public class Prueba1 extends HttpServlet {
             item.addProperty("correo", cliente.getCorreo());
             array.add(item);
             gson.add("datos", array);
-            out.print(gson.toString());
-            out.close();
+            response.getWriter().write(gson.toString());
+            System.out.println(gson.toString());
         }
             
         if(request.getParameter("action").equalsIgnoreCase("listar")){
