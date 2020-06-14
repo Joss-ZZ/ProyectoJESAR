@@ -1,95 +1,113 @@
+
+
 $(document).ready(function () {
-      
-    var tabla = $('#listclientes').DataTable({
-       "columnDefs":[{
-        "targets": -1,
-        "data":null,
-        "defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>"  
-       }],
+    var user_id, opcion;
+    accion = "listar";
 
-        //Para cambiar el lenguaje a español
-        "language": {
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "zeroRecords": "No se encontraron resultados",
-            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sSearch": "Buscar:",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "sProcessing": "Procesando...",
-        }
-
+    tablaUsuarios = $('#listclientes').DataTable({
+        "ajax": {
+            "url": "/Admin-JESAR/Prueba",
+            "method": 'POST', //usamos el metodo POST
+            "data": {action: accion}, //enviamos opcion 4 para que haga un SELECT
+            "dataSrc": "datos"
+        },
+        "columns": [
+            {"data": "id"},
+            {"data": "nombre"},
+            {"data": "apellidos"},
+            {"data": "tipo_documento"},
+            {"data": "documento"},
+            {"data": "telefono"},
+            {"data": "direccion"},
+            {"data": "correo"},
+            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
+        ]
     });
 
+    var fila; //captura la fila, para editar o eliminar
+//submit para el Alta y Actualización
+    $('#formUsuarios').submit(function (e) {
+        e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
+        id = $.trim($('#id').val());
+        nombre = $.trim($('#nombre').val());
+        apellidos = $.trim($('#apellidos').val());
+        tipo_documento = $.trim($('#tipodoc').val());
+        documento = $.trim($('#doc').val());
+        telefono = $.trim($('#telf').val());
+        direccion = $.trim($('#dir').val());
+        correo = $.trim($('#correo').val());
+        
+        $.ajax({
+            url: "/Admin-JESAR/Prueba",
+            type: "POST",
+            datatype: "json",
+            data: {action: accion, id: id, nombre: nombre, apellidos: apellidos, tipodoc: tipo_documento, doc: documento, telefono: telefono, direccion: direccion, correo:correo},
+            success: function (data) {
+                tablaUsuarios.ajax.reload(null, false);
+            }
+        });
+        $('#clientesCRUD').modal('hide');
+    });
+
+
+
+//para limpiar los campos antes de dar de Alta una Persona
     $("#btnNuevo").click(function () {
-        $("#formPersonas").trigger("reset");
-        $(".modal-header").css("background-color", "#28a745");
+        accion = "nuevo"; //alta           
+        user_id = null;
+        $("#formUsuarios").trigger("reset");
+        $(".modal-header").css("background-color", "#17a2b8");
         $(".modal-header").css("color", "white");
-        $(".modal-title").text("Nueva Persona");
-        $("#clientesCRUD").modal("show");
-        opcion = 1; //alta
+        $(".modal-title").text("Alta de Usuario");
+        $('#clientesCRUD').modal('show');
     });
 
-    $(document).on('click', '.eliminarCliente', function () {
-        var idcliente = $(this).attr('id');
-        var row = $(this).parent().parent();
-        var r = confirm("Seguro que desea eliminar Cliente?");
-        if (r == true) {
+//Editar        
+    $(document).on("click", ".btnEditar", function () {
+        accion = "editar";//editar
+        fila = $(this).closest("tr");
+        user_id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID
+        
+        nombre = fila.find('td:eq(1)').text();
+        apellidos = fila.find('td:eq(2)').text();
+        tipo_documento = fila.find('td:eq(3)').text();
+        documento = fila.find('td:eq(4)').text();
+        telefono = fila.find('td:eq(5)').text();
+        direccion = fila.find('td:eq(6)').text();
+        correo = fila.find('td:eq(7)').text();
+  
+        $("#id").val(user_id);
+        $("#nombre").val(nombre);
+        $("#apellidos").val(apellidos);
+        $("#tipodoc").val(tipo_documento);
+        $("#doc").val(documento);
+        $("#telf").val(telefono);
+        $("#dir").val(direccion);
+        $("#correo").val(correo);
+        $(".modal-header").css("background-color", "#007bff");
+        $(".modal-header").css("color", "white");
+        $(".modal-title").text("Editar Usuario");
+        $('#clientesCRUD').modal('show');
+    });
+
+//Borrar
+    $(document).on("click", ".btnBorrar", function () {
+        fila = $(this);
+        user_id = parseInt($(this).closest('tr').find('td:eq(0)').text());
+        accion = "eliminar"; //eliminar        
+        var respuesta = confirm("¿Está seguro de borrar el registro " + user_id + "?");
+        if (respuesta) {
             $.ajax({
                 url: "/Admin-JESAR/Prueba2",
-                method: "POST",
-                data: {"action": "eliminar", "idcliente": idcliente},
-                success: function (data) {
-                    alert(data);
-                    row.remove();
-                },
-                error: function (error) {
-                    alert('No se pudo eliminar');
+                type: "POST",
+                datatype: "json",
+                data: {action: accion, user_id: user_id},
+                success: function () {
+                    tablaUsuarios.row(fila.parents('tr')).remove().draw();
                 }
             });
         }
     });
-
-
-    $("#formPersonas").submit(function (e) {
-        e.preventDefault();
-        id = $.trim($("#id").val());
-        nombre = $.trim($("#nombre").val());
-        apellidos = $.trim($("#apellidos").val());
-        tipodoc = $.trim($("#tipodoc").val());
-        doc = $.trim($("#doc").val());
-        telefono = $.trim($("#telf").val());
-        direccion = $.trim($("#dir").val());
-        correo = $.trim($("#correo").val());
-        $.ajax({
-            url: "/Admin-JESAR/Prueba",
-            type: "POST",
-            dataType: "json",
-            data: {action: "nuevo",id:id, nombre: nombre, apellidos: apellidos, tipodoc: tipodoc, doc: doc, telefono: telefono, direccion: direccion, correo: correo},
-            success: function (data) {
-                id = data.datos[0].id;
-                nombre = data.datos[0].nombre;
-                apellidos = data.datos[0].apellidos;
-                tipodoc = data.datos[0].tipodoc;
-                doc =data.datos[0].doc;
-                telefono =data.datos[0].telefono;
-                direccion =data.datos[0].direccion;
-                correo =data.datos[0].correo;
-                tabla.row.add([id,nombre,apellidos,tipodoc,doc,telefono,direccion,correo]).draw();
-            },
-            error: function (error) {
-                alert('No se pudo eliminar');
-            }
-        });
-        $("#clientesCRUD").modal("hide");
-
-    });
-
 
 });
 

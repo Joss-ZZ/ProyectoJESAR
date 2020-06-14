@@ -40,7 +40,9 @@
                             <th>Correo</th>
                             <th>Acciones</th>
                         </tr>
-                    </thead>                
+                    </thead>
+                    <tbody>                       
+                    </tbody>
                 </table>
             </div>
 
@@ -53,7 +55,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form id="formPersonas">    
+                        <form id="formUsuarios">    
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="nombre" class="col-form-label">id:</label>

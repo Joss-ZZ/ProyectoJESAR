@@ -26,6 +26,17 @@ public class Cliente {
         this.conn = conn;
     }
 
+    public Cliente(int id, String nombre, String apellidos, String tipo_documento, String documento, String telefono, String direccion, String correo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.tipo_documento = tipo_documento;
+        this.documento = documento;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.correo = correo;
+    }
+
     public Cliente(String nombre, String apellidos, String tipo_documento, String documento, String telefono, String direccion, String correo) {
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -119,7 +130,6 @@ public class Cliente {
                 item.addProperty("telefono", rs.getString("telefono"));
                 item.addProperty("direccion", rs.getString("direccion"));
                 item.addProperty("correo", rs.getString("correo"));
-                //item.addProperty("acciones", " <button type='button' class='btn btn-warning' id='" + rs.getInt("id") + "'>Editar</button><button type='button' class='btn btn-danger eliminarCliente' id='" + rs.getInt("id") + "'>Eliminar</button>");
                 array.add(item);
             }
             return array;
@@ -174,6 +184,29 @@ public class Cliente {
             return id;
         } catch (Exception e) {
             System.out.println("ERROR EN RETONAR EL ID DEL CLIENTE: " + e.getMessage());
+        }
+        return 0;
+    }
+    
+    public int EditarCliente(Cliente cli){
+        String sql = "UPDATE Z_CLIENTE SET nombre=?,apellidos=?, tipo_documento=?,documento=?, telefono=?, direccion=?,correo=? where id='"+cli.getId()+"'";
+        int resultado = 0;
+        try {
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ps.setString(1, cli.getNombre());
+            ps.setString(2, cli.getApellidos());
+            ps.setString(3, cli.getTipo_documento());
+            ps.setString(4, cli.getDocumento());
+            ps.setString(5, cli.getTelefono());
+            ps.setString(6, cli.getDireccion());
+            ps.setString(7, cli.getCorreo());
+            resultado = ps.executeUpdate();
+            if(resultado == 1){
+                return resultado;
+            }
+            return resultado;
+        } catch (Exception e) {
+            System.out.println("ERROR AL EDUTAR UN CLIENTE: "+e.getMessage());
         }
         return 0;
     }

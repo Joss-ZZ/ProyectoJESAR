@@ -35,9 +35,8 @@ public class Prueba2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        try {
-            String accion = request.getParameter("action");
-            int id = Integer.parseInt(request.getParameter("idcliente"));
+        if(request.getParameter("action").equalsIgnoreCase("eliminar")){
+            int id = Integer.parseInt(request.getParameter("user_id"));
             Conexion conn = new Conexion();
             Cliente cli = new Cliente(conn);
             int resultado = cli.EliminarClientes(id);
@@ -45,10 +44,7 @@ public class Prueba2 extends HttpServlet {
                 out.print("Eliminado con exito");
             } else {
                 out.print("No se pudo eliminar al cliente");
-            }            
-        } catch (Exception e) {
-        }finally {
-            out.close();
+            }              
         }
 }
 
