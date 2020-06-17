@@ -101,8 +101,7 @@ public class Prueba1 extends HttpServlet {
         }
 
         if (request.getParameter("action").equalsIgnoreCase("listar")) {
-            Conexion conn = new Conexion();
-            Cliente clientes = new Cliente(conn);
+            Cliente clientes = new Cliente();
             com.google.gson.JsonObject gson = new JsonObject();
             String datos = "";
             JsonArray array = new JsonArray();

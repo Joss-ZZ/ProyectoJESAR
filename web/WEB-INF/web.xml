@@ -20,6 +20,10 @@
         <servlet-name>Prueba2</servlet-name>
         <servlet-class>CONTROLADOR.Prueba2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorInsumos</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorInsumos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AutorizaUsuario</servlet-name>
         <url-pattern>/AutorizaUsuario</url-pattern>
@@ -35,6 +39,10 @@
     <servlet-mapping>
         <servlet-name>Prueba2</servlet-name>
         <url-pattern>/Prueba2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorInsumos</servlet-name>
+        <url-pattern>/ControladorInsumos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

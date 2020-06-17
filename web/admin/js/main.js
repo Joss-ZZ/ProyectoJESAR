@@ -1,7 +1,5 @@
-
-
 $(document).ready(function () {
-    var user_id, opcion;
+    var user_id, accion;
     accion = "listar";
 
     tablaUsuarios = $('#listclientes').DataTable({
@@ -103,6 +101,7 @@ $(document).ready(function () {
                 datatype: "json",
                 data: {action: accion, user_id: user_id},
                 success: function () {
+                    alert('Lograste eliminar');
                     tablaUsuarios.row(fila.parents('tr')).remove().draw();
                 }
             });

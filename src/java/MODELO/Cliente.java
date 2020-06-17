@@ -132,6 +132,7 @@ public class Cliente {
                 item.addProperty("correo", rs.getString("correo"));
                 array.add(item);
             }
+            conn.desconectar();
             return array;
         } catch (Exception e) {
             System.out.println("Problema en la consulta");
