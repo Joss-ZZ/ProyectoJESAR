@@ -12,14 +12,19 @@ $(document).ready(function () {
         },
         "columns": [
             {"data": "id"},
+            {"data": "id_cat"},
             {"data": "nombre_cat"},
             {"data": "nombre_insumo"},
             {"data": "cant"},
+            {"data": "id_und"},
             {"data": "nombre_und"},
             {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditarInsumo'><i class='material-icons'>Editar</i></button><button class='btn btn-danger btn-sm btnBorrarInsumo'><i class='material-icons'>Eliminar</i></button></div></div>"}
-        ]    
+        ],    
+        "aoColumnDefs": [ { "sClass": "hide_me", "aTargets": [ 1,5 ] } ]
     });
 
+    //tablaInsumos.column(2).visible(0);
+    
     var fila; //captura la fila, para editar o eliminar
 //submit para el Alta y Actualización
     $('#formInsumos').submit(function (e) {
@@ -55,23 +60,25 @@ $(document).ready(function () {
     });
 
 //Editar        
+
     $(document).on("click", ".btnEditarInsumo", function () {
         accion = "Editar";//editar
         fila = $(this).closest("tr");
       
         insumo_id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID 
-        id_categoria = fila.find
-        categoria = fila.find('td:eq(1)').text();
-        nombre = fila.find('td:eq(2)').text();
-        cantidad = parseFloat(fila.find('td:eq(3)').text());
-        unidad = fila.find('td:eq(4)').text();
-        alert(cantidad);
+        cat_id = parseInt(fila.find('td:eq(1)').text());
+        categoria = fila.find('td:eq(2)').text();
+        nombre = fila.find('td:eq(3)').text();
+        cantidad = parseFloat(fila.find('td:eq(4)').text());
+        und_id = parseInt(fila.find('td:eq(5)').text());
+        unidad = fila.find('td:eq(6)').text();
+        alert();
 
         $("#insumo_id").val(insumo_id);
-        $("#categoria").val(categoria);
+        $("#categoria").val(cat_id);
         $("#nombre").val(nombre);
         $("#cantidad").val(cantidad);
-        $("#unidad").val(unidad);
+        $("#unidad").val(und_id);
         $(".modal-header").css("background-color", "#007bff");
         $(".modal-header").css("color", "white");
         $(".modal-title").text("Editar Insumo");
@@ -97,6 +104,5 @@ $(document).ready(function () {
             });
         }
     });
-
 });
 

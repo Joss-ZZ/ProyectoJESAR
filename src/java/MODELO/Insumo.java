@@ -72,6 +72,16 @@ public class Insumo {
         this.cantidad = cantidad;
     }
 
+    public Conexion getConn() {
+        return conn;
+    }
+
+    public void setConn(Conexion conn) {
+        this.conn = conn;
+    }
+
+
+
     public JsonArray MantenerInsumo(Insumo ins, String accion) {
         String sql = "{CALL PRC_MANTE_INSUMOS(?, ?, ?, ?, ?,?)}";
         LinkedList<Insumo> insumo = new LinkedList<>();
@@ -101,7 +111,9 @@ public class Insumo {
                 item.addProperty("id", rs.getInt("ins.id"));
                 item.addProperty("nombre_insumo", rs.getString("ins.descripcion"));
                 item.addProperty("cant", rs.getDouble("ins.cant"));
+                item.addProperty("id_cat", rs.getString("cat.id"));
                 item.addProperty("nombre_cat", rs.getString("cat.descripcion"));
+                item.addProperty("id_und", rs.getString("und.id"));
                 item.addProperty("nombre_und", rs.getString("und.descripcion"));
                 array.add(item);
                 conn.desconectar();
@@ -125,7 +137,9 @@ public class Insumo {
                 item.addProperty("id", rs.getInt("ins.id"));
                 item.addProperty("nombre_insumo", rs.getString("ins.descripcion"));
                 item.addProperty("cant", rs.getDouble("ins.cant"));
+                item.addProperty("id_cat", rs.getString("cat.id"));
                 item.addProperty("nombre_cat", rs.getString("cat.descripcion"));
+                item.addProperty("id_und", rs.getString("und.id"));
                 item.addProperty("nombre_und", rs.getString("und.descripcion"));
                 array.add(item);
             }

@@ -54,3 +54,7 @@
     text-align: center;
     border: 1px solid #BBBBBB;
 }
+
+th.hide_me, td.hide_me {
+    display: none;
+}

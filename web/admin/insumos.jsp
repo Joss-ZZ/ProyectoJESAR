@@ -35,9 +35,11 @@
                             <thead>
                                 <tr>
                                     <th>Código</th>
+                                    <th class="hide_me">IDCat</th>
                                     <th>Categoría</th>
                                     <th>Nombre de Insumo</th>
                                     <th>Cantidad</th>
+                                    <th>IDUnd</th>
                                     <th>Unidad</th>
                                     <th>Acciones</th>
                                 </tr>
