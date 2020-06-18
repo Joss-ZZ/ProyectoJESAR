@@ -22,8 +22,6 @@ $(document).ready(function () {
         ],    
         "aoColumnDefs": [ { "sClass": "hide_me", "aTargets": [ 1,5 ] } ]
     });
-
-    //tablaInsumos.column(2).visible(0);
     
     var fila; //captura la fila, para editar o eliminar
 //submit para el Alta y Actualización
@@ -67,12 +65,9 @@ $(document).ready(function () {
       
         insumo_id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID 
         cat_id = parseInt(fila.find('td:eq(1)').text());
-        categoria = fila.find('td:eq(2)').text();
         nombre = fila.find('td:eq(3)').text();
         cantidad = parseFloat(fila.find('td:eq(4)').text());
         und_id = parseInt(fila.find('td:eq(5)').text());
-        unidad = fila.find('td:eq(6)').text();
-        alert();
 
         $("#insumo_id").val(insumo_id);
         $("#categoria").val(cat_id);

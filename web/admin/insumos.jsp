@@ -39,7 +39,7 @@
                                     <th>Categoría</th>
                                     <th>Nombre de Insumo</th>
                                     <th>Cantidad</th>
-                                    <th>IDUnd</th>
+                                    <th class="hide_me">IDUnd</th>
                                     <th>Unidad</th>
                                     <th>Acciones</th>
                                 </tr>
