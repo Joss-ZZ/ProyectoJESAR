@@ -67,7 +67,7 @@
                                     <div class="form-group mb-0">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                                            <label class="custom-control-label" for="exampleCheck1">Guardar sesion <a href="#">terms of service</a>.</label>
+                                            <label class="custom-control-label" for="exampleCheck1">Recordar datos</label>
                                         </div>
                                     </div>
                                     

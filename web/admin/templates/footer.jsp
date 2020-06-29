@@ -24,6 +24,7 @@
 <!-- Nuestros scripts -->
 <script src="/Admin-JESAR/admin/js/main.js"></script>
 <script src="/Admin-JESAR/admin/js/mainInsumos.js"></script>
+<script src="/Admin-JESAR/admin/js/mainColor.js"></script>
 
 <script>
   $(function () {

@@ -4,7 +4,7 @@
       Empleado p = (Empleado)session.getAttribute("usuario");
       if(p==null){
           response.sendRedirect("login.jsp");
-      */
+        }*/
       %>
     <!-- Site wrapper -->
     <div class="wrapper">  

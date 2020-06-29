@@ -24,6 +24,10 @@
         <servlet-name>ControladorInsumos</servlet-name>
         <servlet-class>CONTROLADOR.ControladorInsumos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorColor</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorColor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AutorizaUsuario</servlet-name>
         <url-pattern>/AutorizaUsuario</url-pattern>
@@ -43,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>ControladorInsumos</servlet-name>
         <url-pattern>/ControladorInsumos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorColor</servlet-name>
+        <url-pattern>/ControladorColor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
