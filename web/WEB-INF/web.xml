@@ -28,6 +28,30 @@
         <servlet-name>ControladorColor</servlet-name>
         <servlet-class>CONTROLADOR.ControladorColor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorUnidadInsumos</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorUnidadInsumos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorCategoriaInsumos</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorCategoriaInsumos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorCategoriaProductos</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorCategoriaProductos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorTipoOperarios</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorTipoOperarios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorTipoEmpleado</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorTipoEmpleados</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorTipoEmpleados</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorTipoEmpleados</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AutorizaUsuario</servlet-name>
         <url-pattern>/AutorizaUsuario</url-pattern>
@@ -51,6 +75,26 @@
     <servlet-mapping>
         <servlet-name>ControladorColor</servlet-name>
         <url-pattern>/ControladorColor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorUnidadInsumos</servlet-name>
+        <url-pattern>/ControladorUnidadInsumos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorCategoriaInsumos</servlet-name>
+        <url-pattern>/ControladorCategoriaInsumos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorCategoriaProductos</servlet-name>
+        <url-pattern>/ControladorCategoriaProductos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorTipoOperarios</servlet-name>
+        <url-pattern>/ControladorTipoOperarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorTipoEmpleados</servlet-name>
+        <url-pattern>/ControladorTipoEmpleados</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

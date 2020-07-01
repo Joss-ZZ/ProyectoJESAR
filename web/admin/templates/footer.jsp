@@ -25,7 +25,11 @@
 <script src="/Admin-JESAR/admin/js/main.js"></script>
 <script src="/Admin-JESAR/admin/js/mainInsumos.js"></script>
 <script src="/Admin-JESAR/admin/js/mainColor.js"></script>
-
+<script src="/Admin-JESAR/admin/js/mainUnidadInsumos.js"></script>
+<script src="/Admin-JESAR/admin/js/mainCategoriaInsumos.js"></script>
+<script src="/Admin-JESAR/admin/js/mainCategoriaProductos.js"></script>
+<script src="/Admin-JESAR/admin/js/mainTipoOperarios.js"></script>
+<script src="/Admin-JESAR/admin/js/mainTipoEmpleados.js"></script>
 <script>
   $(function () {
     $("#example1").DataTable({

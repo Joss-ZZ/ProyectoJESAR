@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
 
 /**
  *
@@ -57,7 +56,6 @@ public class Color {
     
     public JsonArray MantenerColor(Color col, String accion) {
         String sql = "{CALL PRC_MANTE_COLOR(?, ?, ?)}";
-        LinkedList<Color> color = new LinkedList<>();
         try {
             CallableStatement cs = conn.getConnection().prepareCall(sql);
             if (accion.equalsIgnoreCase("Eliminar")) {
@@ -102,7 +100,7 @@ public class Color {
             }
             conn.desconectar();
             return array;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en Color.ListarColor: " + e.getMessage());
         }
         return null;

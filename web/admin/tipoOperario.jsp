@@ -12,14 +12,14 @@
         <div class="card">
 
             <div class="card-header">
-                <h3 class="card-title">Mantener Colores</h3>
+                <h3 class="card-title">Mantener Tipo de Operarios</h3>
             </div>
             <!-- /.card-header -->
 
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">            
-                        <button id="btnNuevo-color" type="button" class="btn btn-success" data-toggle="modal">Nuevo</button>    
+                        <button id="btnNuevo-TipoOperario" type="button" class="btn btn-success" data-toggle="modal">Nuevo</button>    
                     </div>    
                 </div>    
             </div>                 
@@ -27,7 +27,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <table id="listColor" class="table table-bordered display nowrap" cellspacing="0" width="100%">
+                        <table id="listTipoOperarios" class="table table-bordered display nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -44,7 +44,7 @@
             
             
             <!-- MODAL CRUD -->>                    
-            <div class="modal fade" id="colorCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="TipoOperariosCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -52,7 +52,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form id="formColor">    
+                        <form id="formTipoOperarios">    
                             <div class="modal-body">
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" id="id">
@@ -64,7 +64,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" id="btnGuardar-color" class="btn btn-dark">Guardar</button>
+                                <button type="submit" id="btnGuardar-TipoOperarios" class="btn btn-dark">Guardar</button>
                             </div>
                         </form>    
                     </div>
