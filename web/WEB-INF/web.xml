@@ -52,6 +52,10 @@
         <servlet-name>ControladorTipoEmpleados</servlet-name>
         <servlet-class>CONTROLADOR.ControladorTipoEmpleados</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorSeries</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorSeries</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AutorizaUsuario</servlet-name>
         <url-pattern>/AutorizaUsuario</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>ControladorTipoEmpleados</servlet-name>
         <url-pattern>/ControladorTipoEmpleados</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorSeries</servlet-name>
+        <url-pattern>/ControladorSeries</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

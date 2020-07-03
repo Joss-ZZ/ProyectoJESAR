@@ -30,6 +30,7 @@
 <script src="/Admin-JESAR/admin/js/mainCategoriaProductos.js"></script>
 <script src="/Admin-JESAR/admin/js/mainTipoOperarios.js"></script>
 <script src="/Admin-JESAR/admin/js/mainTipoEmpleados.js"></script>
+<script src="/Admin-JESAR/admin/js/mainSerie.js"></script>
 <script>
   $(function () {
     $("#example1").DataTable({
