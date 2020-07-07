@@ -56,6 +56,22 @@
         <servlet-name>ControladorSeries</servlet-name>
         <servlet-class>CONTROLADOR.ControladorSeries</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorTipoDocumento</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorTipoDocumento</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorTipoComprobante</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorTipoComprobante</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorModeloProductos</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorModeloProductos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorProducto</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorProducto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AutorizaUsuario</servlet-name>
         <url-pattern>/AutorizaUsuario</url-pattern>
@@ -103,6 +119,22 @@
     <servlet-mapping>
         <servlet-name>ControladorSeries</servlet-name>
         <url-pattern>/ControladorSeries</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorTipoDocumento</servlet-name>
+        <url-pattern>/ControladorTipoDocumento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorTipoComprobante</servlet-name>
+        <url-pattern>/ControladorTipoComprobante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorModeloProductos</servlet-name>
+        <url-pattern>/ControladorModeloProductos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorProducto</servlet-name>
+        <url-pattern>/ControladorProducto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

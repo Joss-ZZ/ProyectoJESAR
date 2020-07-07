@@ -8,8 +8,10 @@ package MODELO;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 /**
  *
@@ -56,6 +58,27 @@ public class Serie {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    
+    public LinkedList<Serie> ListarSeries(){
+        String sql = "SELECT *FROM Z_SERIE";
+        LinkedList<Serie> lista = new LinkedList<>();
+        try {
+            System.out.println("SERIE");
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Serie serie = new Serie();
+                serie.setId(rs.getInt("id"));
+                serie.setDescripcion(rs.getString("descripcion"));
+                lista.add(serie);               
+            }
+            conn.desconectar();
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Problema en Serie.ListarSeries: "+e.getMessage());
+        }
+        return null;
     }
     
     public JsonArray MantenerSerie(Serie serie, String accion) {

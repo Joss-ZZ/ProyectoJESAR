@@ -3,8 +3,10 @@ package MODELO;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 /**
  *
@@ -14,7 +16,11 @@ public class Color {
     private int id;
     private String descripcion;
     Conexion conn = new Conexion();
-
+    
+    public Color(Conexion conn) {
+        this.conn = conn;
+    }
+    
     public Color() {
         this.id = 0;
         this.descripcion = "";
@@ -52,6 +58,27 @@ public class Color {
     @Override
     public String toString() {
         return "Color{" + "id=" + id + ", descripcion=" + descripcion + '}';
+    }
+    
+    public LinkedList<Color> ListarColores(){
+        String sql = "SELECT *FROM Z_COLOR";
+        LinkedList<Color> lista = new LinkedList<>();
+        try {
+            System.out.println("COLOR");
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Color color = new Color();
+                color.setId(rs.getInt("id"));
+                color.setDescripcion(rs.getString("descripcion"));
+                lista.add(color);               
+            }
+            conn.desconectar();
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Problema en Color.ListarColores: "+e.getMessage());
+        }
+        return null;
     }
     
     public JsonArray MantenerColor(Color col, String accion) {

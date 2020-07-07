@@ -79,12 +79,9 @@ public class Insumo {
     public void setConn(Conexion conn) {
         this.conn = conn;
     }
-
-
-
+    
     public JsonArray MantenerInsumo(Insumo ins, String accion) {
         String sql = "{CALL PRC_MANTE_INSUMOS(?, ?, ?, ?, ?,?)}";
-        LinkedList<Insumo> insumo = new LinkedList<>();
         try {
             CallableStatement cs = conn.getConnection().prepareCall(sql);
             if (accion.equalsIgnoreCase("Eliminar")) {

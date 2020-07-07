@@ -1,7 +1,6 @@
 <%@page import="MODELO.Conexion"%>
-<%@page import="MODELO.UnidadInsumo"%>
+<%@page import="MODELO.CategoriaProducto"%>
 <%@page import="java.util.LinkedList"%>
-<%@page import="MODELO.CategoriaInsumo"%>
 <%@ include file="templates/header.jsp"%>
 <%@ include file="templates/barra.jsp"%>
 <%@ include file="templates/navegacion.jsp"%>
@@ -16,14 +15,14 @@
         <div class="card">
 
             <div class="card-header">
-                <h3 class="card-title">Mantener Insumos</h3>
+                <h3 class="card-title">Mantener Modelo de Productos</h3>
             </div>
             <!-- /.card-header -->
 
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">            
-                        <button id="btnNuevoInsumo" type="button" class="btn btn-success" data-toggle="modal">Nuevo Insumo</button>    
+                        <button id="btnNuevoModeloProducto" type="button" class="btn btn-success" data-toggle="modal">Nuevo</button>    
                     </div>    
                 </div>    
             </div>                
@@ -31,16 +30,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <table id="ListaInsumos" class="table table-bordered display nowrap" cellspacing="0" width="100%">
+                        <table id="ListaModeloProductos" class="table table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Código</th>
                                     <th>IDCat</th>
                                     <th>Categoría</th>
-                                    <th>Nombre de Insumo</th>
-                                    <th>Cantidad</th>
-                                    <th>IDUnd</th>
-                                    <th>Unidad</th>
+                                    <th>Nombre de Modelo</th>
+                                    <th>Precio de Venta</th>
+                                    <th>Precio de Cortado</th>
+                                    <th>Precio de Aparado</th>
+                                    <th>Precio de Armado</th>
+                                    <th>Precio de Alistado</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -52,7 +53,7 @@
             </div>
 
             <!-- MODAL CREAR -->>                    
-            <div class="modal fade" id="insumosCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="ModeloProductosCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -60,50 +61,51 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form id="formInsumos">    
+                        <form id="formModeloProductos">    
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="id" class="col-form-label"></label>                                  
-                                    <input type="hidden" class="form-control" id="insumo_id">
+                                    <label for="id" class="col-form-label">Código de Modelo</label>                                  
+                                    <input type="text" class="form-control" id="cod_modeloproducto">
                                 </div>                                 
                                 <div class="form-group">
                                     <label for="categoria" class="col-form-label">Categoria:</label>
-                                    <select name="categoria" id="categoria">
+                                    <select name="categoria" id="id_categoria">
                                         <option >Elija una opción</option>
                                         <%
                                             Conexion conn = new Conexion();
-                                            CategoriaInsumo cat = new CategoriaInsumo(conn);
-                                            LinkedList<CategoriaInsumo> categorias = new LinkedList<>();
+                                            CategoriaProducto cat = new CategoriaProducto(conn);
+                                            LinkedList<CategoriaProducto> categorias = new LinkedList<>();
                                             categorias = cat.ListarCat();
-                                            for (CategoriaInsumo cate : categorias) {
+                                            for (CategoriaProducto cate : categorias) {
                                         %>                                        
                                         <option name="categoria" value="<%=cate.getId()%>"><%=cate.getDescripcion()%></option>                                      
                                         <%}%>
                                     </select>                                    
                                 </div>
                                 <div class="form-group">
-                                    <label for="insumo" class="col-form-label">Nombre de Insumo:</label>
+                                    <label for="insumo" class="col-form-label">Nombre de Modelo:</label>
                                     <input type="text" class="form-control" id="nombre">
                                 </div>                
                                 <div class="form-group">
-                                    <label for="cantidad" class="col-form-label">Cantidad:</label>
-                                    <input type="text" class="form-control" id="cantidad">
-                                </div>        
+                                    <label for="cantidad" class="col-form-label">Precio de Venta:</label>
+                                    <input type="text" class="form-control" id="p_venta">
+                                </div>
                                 <div class="form-group">
-                                    <label for="unidad" class="col-form-label">Unidad:</label>
-                                    <select name="unidad" id="unidad">
-                                        <option selected="selected">Elija una opción</option>
-                                        <%
-                                            Conexion conn1 = new Conexion();
-                                            UnidadInsumo und = new UnidadInsumo(conn1);
-                                            LinkedList<UnidadInsumo> unidades = new LinkedList<>();
-                                            unidades = und.ListarUnidades();
-                                            for (UnidadInsumo unidad : unidades) {
-                                        %>                                        
-                                        <option name="unidad" value="<%=unidad.getId()%>"><%=unidad.getDescripcion()%></option>                                      
-                                        <%}%>
-                                    </select> 
-                                </div>   
+                                    <label for="cantidad" class="col-form-label">Precio de Cortado:</label>
+                                    <input type="text" class="form-control" id="p_cortado">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cantidad" class="col-form-label">Precio de Aparado:</label>
+                                    <input type="text" class="form-control" id="p_aparado">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cantidad" class="col-form-label">Precio de Armado:</label>
+                                    <input type="text" class="form-control" id="p_armado">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cantidad" class="col-form-label">Precio de Alistado:</label>
+                                    <input type="text" class="form-control" id="p_alistado">
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>

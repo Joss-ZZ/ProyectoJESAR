@@ -42,7 +42,7 @@ $(document).ready(function () {
         $("#formColor").trigger("reset");
         $(".modal-header").css("background-color", "#17a2b8");
         $(".modal-header").css("color", "white");
-        $(".modal-title").text("Alta de Color");
+        $(".modal-title").text("Nuevo Color");
         $('#colorCRUD').modal('show');
     });
 

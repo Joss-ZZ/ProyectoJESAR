@@ -42,7 +42,7 @@ $(document).ready(function () {
         $("#formCategoriaProducto").trigger("reset");
         $(".modal-header").css("background-color", "#17a2b8");
         $(".modal-header").css("color", "white");
-        $(".modal-title").text("Alta de Color");
+        $(".modal-title").text("Nueva Categoria Producto");
         $('#categoriaProductoCRUD').modal('show');
     });
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
         
         $(".modal-header").css("background-color", "#007bff");
         $(".modal-header").css("color", "white");
-        $(".modal-title").text("Editar Color");
+        $(".modal-title").text("Editar Categoria Producto");
         $('#categoriaProductoCRUD').modal('show');
     });
 

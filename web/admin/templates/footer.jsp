@@ -31,6 +31,11 @@
 <script src="/Admin-JESAR/admin/js/mainTipoOperarios.js"></script>
 <script src="/Admin-JESAR/admin/js/mainTipoEmpleados.js"></script>
 <script src="/Admin-JESAR/admin/js/mainSerie.js"></script>
+<script src="/Admin-JESAR/admin/js/mainTipoDocumento.js"></script>
+<script src="/Admin-JESAR/admin/js/mainTipoComprobante.js"></script>
+<script src="/Admin-JESAR/admin/js/mainModeloProducto.js"></script>
+<script src="/Admin-JESAR/admin/js/mainProducto.js"></script>
+
 <script>
   $(function () {
     $("#example1").DataTable({
