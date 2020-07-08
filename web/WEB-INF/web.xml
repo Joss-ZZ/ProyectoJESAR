@@ -72,6 +72,14 @@
         <servlet-name>ControladorProducto</servlet-name>
         <servlet-class>CONTROLADOR.ControladorProducto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorDetalleOrdenProducto</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorDetalleOrdenProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorOrdenProduccion</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorOrdenProduccion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AutorizaUsuario</servlet-name>
         <url-pattern>/AutorizaUsuario</url-pattern>
@@ -135,6 +143,14 @@
     <servlet-mapping>
         <servlet-name>ControladorProducto</servlet-name>
         <url-pattern>/ControladorProducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorDetalleOrdenProducto</servlet-name>
+        <url-pattern>/ControladorDetalleOrdenProducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorOrdenProduccion</servlet-name>
+        <url-pattern>/ControladorOrdenProduccion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
