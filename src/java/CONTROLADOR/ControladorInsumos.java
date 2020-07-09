@@ -5,8 +5,6 @@
  */
 package CONTROLADOR;
 
-import MODELO.Cliente;
-import MODELO.Conexion;
 import MODELO.Insumo;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

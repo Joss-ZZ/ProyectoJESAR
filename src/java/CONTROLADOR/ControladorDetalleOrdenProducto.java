@@ -22,8 +22,8 @@ public class ControladorDetalleOrdenProducto extends HttpServlet {
 
         if (request.getParameter("action").equalsIgnoreCase("Editar")) {
             String accion = request.getParameter("action");
-            int id_orden_prod = Integer.parseInt(request.getParameter("detalleProduccion_id"));
-            String cod_modeloproducto = request.getParameter("producto_id");
+            int id_orden_prod = Integer.parseInt(request.getParameter("id_orden_prod"));
+            String cod_modeloproducto = request.getParameter("cod_modeloproducto");
             int id_serie = Integer.parseInt(request.getParameter("id_serie"));
             int id_color = Integer.parseInt(request.getParameter("id_color"));
             double cantidad = Double.parseDouble(request.getParameter("cant_prod"));
@@ -75,7 +75,7 @@ public class ControladorDetalleOrdenProducto extends HttpServlet {
         if (request.getParameter("action").equalsIgnoreCase("Eliminar")) {
             response.setContentType("text/html;charset=UTF-8");
             String accion = request.getParameter("action");
-            int id_orden_prod = Integer.parseInt(request.getParameter("detalleProduccion_id"));
+            int id_orden_prod = Integer.parseInt(request.getParameter("id_orden_prod"));
             String cod_modeloproducto = request.getParameter("cod_modeloproducto");
             int id_serie = Integer.parseInt(request.getParameter("id_serie"));
             int id_color = Integer.parseInt(request.getParameter("id_color"));

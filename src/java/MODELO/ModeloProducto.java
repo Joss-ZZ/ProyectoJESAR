@@ -147,7 +147,6 @@ public class ModeloProducto {
         return null;
     }
 
-    
     public JsonArray MantenerModeloProducto(ModeloProducto modeloProducto, String accion) {
         String sql = "{CALL PRC_MANTE_MODPRO(?,?,?,?,?,?,?,?,?)}";
         try {

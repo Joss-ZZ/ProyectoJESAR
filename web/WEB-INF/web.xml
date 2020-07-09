@@ -80,6 +80,10 @@
         <servlet-name>ControladorOrdenProduccion</servlet-name>
         <servlet-class>CONTROLADOR.ControladorOrdenProduccion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorEmpleado</servlet-name>
+        <servlet-class>CONTROLADOR.ControladorEmpleado</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AutorizaUsuario</servlet-name>
         <url-pattern>/AutorizaUsuario</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>ControladorOrdenProduccion</servlet-name>
         <url-pattern>/ControladorOrdenProduccion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorEmpleado</servlet-name>
+        <url-pattern>/ControladorEmpleado</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

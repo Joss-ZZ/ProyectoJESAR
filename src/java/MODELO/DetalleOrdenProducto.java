@@ -106,7 +106,7 @@ public class DetalleOrdenProducto {
                 cs.executeUpdate();
                 conn.desconectar();
                 return null;
-            } else if(accion.equalsIgnoreCase("Nuevo") || accion.equalsIgnoreCase("Editar")){
+            } else if(accion.equalsIgnoreCase("Nuevo")){
                 cs.setInt(1, detalleOrdenProducto.getId_orden_prod());
                 cs.setString(2, detalleOrdenProducto.getCod_modeloproducto());
                 cs.setInt(3, detalleOrdenProducto.getId_serie());
@@ -119,6 +119,27 @@ public class DetalleOrdenProducto {
                 JsonObject item = new JsonObject();
                 item.addProperty("detalleProduccion_id", rs.getInt("DOP.id_orden_prod"));
                 item.addProperty("producto_id", rs.getString("P.cod_modeloproducto"));
+                item.addProperty("id_serie", rs.getInt("P.id_serie"));
+                item.addProperty("serie", rs.getString("S.descripcion"));
+                item.addProperty("id_color", rs.getInt("P.id_color"));
+                item.addProperty("color", rs.getString("C.descripcion"));
+                item.addProperty("cant_prod", rs.getDouble("DOP.cantidad"));
+                array.add(item);
+                conn.desconectar();
+                return array;
+            }else if(accion.equalsIgnoreCase("Editar")){
+                cs.setInt(1, detalleOrdenProducto.getId_orden_prod());
+                cs.setString(2, detalleOrdenProducto.getCod_modeloproducto());
+                cs.setInt(3, detalleOrdenProducto.getId_serie());
+                cs.setInt(4, detalleOrdenProducto.getId_color());
+                cs.setDouble(5, detalleOrdenProducto.getCantidad());
+                cs.setString(6, accion);
+                ResultSet rs = cs.executeQuery();
+                JsonArray array = new JsonArray();
+                rs.next();
+                JsonObject item = new JsonObject();
+                item.addProperty("id_orden_prod", rs.getInt("DOP.id_orden_prod"));
+                item.addProperty("cod_modeloproducto", rs.getString("P.cod_modeloproducto"));
                 item.addProperty("id_serie", rs.getInt("P.id_serie"));
                 item.addProperty("serie", rs.getString("S.descripcion"));
                 item.addProperty("id_color", rs.getInt("P.id_color"));

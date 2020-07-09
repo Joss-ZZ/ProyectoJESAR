@@ -40,12 +40,12 @@ public class AutorizaUsuario extends HttpServlet {
         empleado=emp.AutorizaUsuario(user, password);
         RequestDispatcher rd;
         
-        if(empleado!=null && empleado.getEstado().equalsIgnoreCase("Activo")){
+        if(empleado!=null && empleado.getEstado() == 1){
             mensaje="todo ok";
             session.setAttribute("usuario", empleado);
             rd = request.getRequestDispatcher("admin/admin-area.jsp");
             rd.forward(request, response);       
-        }else if(empleado!=null && empleado.getEstado().equalsIgnoreCase("Inactivo")){
+        }else if(empleado!=null && empleado.getEstado() == 2){
             mensaje = "Hola "+empleado.getUsuario()+", actualmente su cuenta está inactiva.";
             request.setAttribute("mensaje", mensaje);
             rd = request.getRequestDispatcher("admin/login.jsp");

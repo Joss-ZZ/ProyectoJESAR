@@ -8,8 +8,10 @@ package MODELO;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 /**
  *
@@ -69,6 +71,25 @@ public class TipoDocumento {
         this.cantDigitos = cantDigitos;
     }
     
+    public LinkedList<TipoDocumento> ListarTipoDocumentos(){
+        String sql = "SELECT *FROM Z_TIPO_DOCUMENTO";
+        LinkedList<TipoDocumento> lista = new LinkedList<>();
+        try {
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                TipoDocumento tipoDocumento = new TipoDocumento();
+                tipoDocumento.setId(rs.getInt("id"));
+                tipoDocumento.setDescripcion(rs.getString("descripcion"));
+                lista.add(tipoDocumento);               
+            }
+            conn.desconectar();
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Problema en TipoDocumento.ListarTipoDocumentos: "+e.getMessage());
+        }
+        return null;
+    }
     
     public JsonArray MantenerTipoDocumento(TipoDocumento tipoDocumento, String accion) {
         String sql = "{CALL PRC_MANTE_TIDOC(?, ?, ?, ?)}";
