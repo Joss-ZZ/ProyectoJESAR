@@ -83,7 +83,7 @@ public class OrdenProduccion {
     }
     
     public LinkedList<OrdenProduccion> ListarOrdenProduccion(){
-        String sql = "SELECT * FROM Z_ORDEN_PRODUCCION";
+        String sql = "SELECT * FROM Z_ORDEN_PRODUCCION WHERE estado='en curso'";
         LinkedList<OrdenProduccion> lista = new LinkedList<>();
         try {
             PreparedStatement ps = conn.getConnection().prepareStatement(sql);
@@ -99,12 +99,11 @@ public class OrdenProduccion {
             conn.desconectar();
             return lista;
         } catch (Exception e) {
-            System.out.println("Problema en OrdenProduccion.ListarOrdenesProduccion: "+e.getMessage());
+            System.out.println("Problema en OrdenProduccion.ListarOrdenesProducciones: "+e.getMessage());
         }
         return null;
     }
-
-    
+   
     public JsonArray MantenerOrdenProduccion(OrdenProduccion ordenProduccion, String accion) {
         String sql = "{CALL PRC_ORDEN_PRO(?,?,?,?,?)}";
         try {

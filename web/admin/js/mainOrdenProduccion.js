@@ -2,7 +2,7 @@ $(document).ready(function () {
     var ordenProduccion_id, accion;
     accion = "Listar";
 
-    tablaOrdenesProduccion = $('#ListaOrdenesProduccion ').DataTable({
+    tablaOrdenesProduccion = $('#ListaOrdenesProduccion').DataTable({
         responsive: true,
         "ajax": {
             "url": "/Admin-JESAR/ControladorOrdenProduccion",
@@ -56,7 +56,7 @@ $(document).ready(function () {
         var f = new Date();
         fecha_inicio = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
         fecha_acabado = "";
-        estado = "en curso";    
+        estado = "en curso";
         var respuesta = confirm("¿Está seguro desea crear esta orden?");
         if (respuesta) {
             $.ajax({
@@ -70,6 +70,25 @@ $(document).ready(function () {
             });
         }
     });
+
+    $(document).on("click", ".btnDetalleOrden", function () {
+        fila = $(this);
+        ordenProduccion_id = $(this).closest('tr').find('td:eq(0)').text();
+        accion = "Buscar"; //eliminar        
+
+        $.ajax({
+            url: "/Admin-JESAR/ControladorOrdenProduccion",
+            type: "POST",
+            datatype: "json",
+            data: {action: accion, ordenProduccion_id: ordenProduccion_id},
+            success: function () {
+                alert('Lograste eliminar');
+                tablaOrdenesProduccion.row(fila.parents('tr')).remove().draw();
+            }
+        });
+
+    });
+
 
     /*  
      $('#formModeloProductos').submit(function (e) {

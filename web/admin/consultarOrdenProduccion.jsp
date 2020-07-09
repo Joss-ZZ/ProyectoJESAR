@@ -15,8 +15,15 @@
                 <h3 class="card-title">Lista de Ordenes de Producción</h3>
             </div>
             <!-- /.card-header -->
-               
-           
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">            
+                        <button id="btnRegistrarOrdenProduccion" type="button" class="btn btn-success">Registrar Orden de Producción</button>    
+                    </div>    
+                </div>    
+            </div>    
+            <br>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">

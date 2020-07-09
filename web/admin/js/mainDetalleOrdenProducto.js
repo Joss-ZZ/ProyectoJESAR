@@ -1,13 +1,20 @@
 $(document).ready(function () {
     var detalleProduccion_id, accion;
-    accion = "Listar";
+
+    tablaDetalleOrdenProducto = $('#listDetalleProductos').DataTable({
+        "columnDefs": [{
+                "targets": -1,
+                "data": null,
+                "defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>"
+            }]
+    });
 
     ListaProductos2 = $('#ListaProductos2').DataTable({
         responsive: true,
         "ajax": {
             "url": "/Admin-JESAR/ControladorProducto",
             "method": 'POST', //usamos el metodo POST
-            "data": {action: accion}, //enviamos opcion 4 para que haga un SELECT
+            "data": {action: "Listar"}, //enviamos opcion 4 para que haga un SELECT
             "dataSrc": "datos"
         },
         "columns": [
@@ -23,6 +30,7 @@ $(document).ready(function () {
             {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnAgregarProducto'><i class='material-icons'>Agregar</i></button></div></div>"}
         ]
     });
+
     var fila; //captura la fila, para editar o eliminar
 //submit para el Alta y Actualización
 
@@ -33,95 +41,35 @@ $(document).ready(function () {
         $('#agregarProductosOrden').modal('show');
     });
 
-
-/*function listarProformas(){
-  var datos = {
-   "dni" : dni,
-   "cargo" : cargo
-  }  
-  ajax: {
-      url: "controlador",
-      type: "POST",
-      datatype: "json"
-      success: function(data){
-         $("#tablaPersonal").Datatable();
-        var fila = '';
-        for(var i=0; data.lenght; i++){
-          fila += "<tr>"+
-                    "<td>"+data['nroProforma']+"</td>"+
-                    "<td>"+data['dni']+"</td>"+
-                    "<td>"+data['concepto']+"</td>"+
-                    "<td>"+data['Dirección']+"</td>"+
-                    "<td>"+data['Email']+"</td>"+
-                    "<td>"+data['direccion']+"</td>"+
-                  "</tr>";
-        }
-        $("#tablaPersonal").append(fila);
-      }
-   }
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $(document).on("click", ".btnAgregarProducto", function () {
-        accion = "AgregarProductoAlDetalle"
+        accion = "Nuevo";
         fila = $(this);
+        detalleProduccion_id = document.getElementById('id_orden_produccion').value;
         producto_id = $(this).closest('tr').find('td:eq(0)').text();
         id_serie = $(this).closest('tr').find('td:eq(1)').text();
         serie = $(this).closest('tr').find('td:eq(2)').text();
         id_color = $(this).closest('tr').find('td:eq(3)').text();
         color = $(this).closest('tr').find('td:eq(4)').text();
-        cant_prod = 1;
-       
-        tablaDetalleOrdenProducto = $('#listDetalleProductos').DataTable({
-        responsive: true,
-        "ajax": {
+        cant_prod = 0;
+
+        $.ajax({
             url: "/Admin-JESAR/ControladorDetalleOrdenProducto",
             type: "POST",
             datatype: "json",
-            data: {action: accion, producto_id: producto_id, id_serie: id_serie, serie: serie, id_color:id_color,color:color ,cant_prod:cant_prod},
-            "dataSrc": "datos"
-        },
-        "columns": [
-            {"data": "cod_modeloproducto"},
-            {"data": "id_serie"},
-            {"data": "descripcion_serie"},
-            {"data": "id_color"},
-            {"data": "descripcion_serie"},
-            {"data": "cantidad"},
-            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-secondary btn-sm btnDetalleOrdenProductoEditar'><i class='material-icons'>Editar</i></button><button class='btn btn-info btn-sm btnDetalleOrdenProductoEliminar'><i class='material-icons'>Eliminar</i></button></div></div>"}
-        ]
-    });
+            data: {action: accion, detalleProduccion_id: detalleProduccion_id, producto_id: producto_id, id_serie: id_serie, serie: serie, id_color: id_color, color: color, cant_prod: cant_prod},
+            success: function (data) {
+                d = data.datos[0].detalleProduccion_id;
+                producto_id = data.datos[0].producto_id;
+                alert(producto_id);
+                id_serie = data.datos[0].id_serie;
+                serie = data.datos[0].serie;
+                id_color = data.datos[0].id_color;
+                color = data.datos[0].color;
+                cant_prod = data.datos[0].cant_prod;
+                tablaDetalleOrdenProducto.row.add([d, producto_id, id_serie, serie, id_color, color, cant_prod]).draw();
 
-
-        $('#agregarProductosOrden').modal('hide');
-        /*fila = $(this);
-         producto_id = $(this).closest('tr').find('td:eq(0)').text();
-         accion = "Eliminar"; //eliminar        
-         var respuesta = confirm("¿Está seguro de borrar el registro " + producto_id + "?");
-         if (respuesta) {
-         $.ajax({
-         url: "/Admin-JESAR/ControladorProducto",
-         type: "POST",
-         datatype: "json",
-         data: {action: accion, producto_id: producto_id, serie_id:serie_id, color_id:color_id},
-         success: function () {
-         alert('Lograste eliminar');
-         tablaProductos.row(fila.parents('tr')).remove().draw();
-         }
-         });
-         }*/
+            }
+        });
     });
 
 });

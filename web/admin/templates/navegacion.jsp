@@ -197,15 +197,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="registrarOrdenProduccion.jsp" class="nav-link">
+                            <a href="consultarOrdenProduccion.jsp" class="nav-link">
                                 <i class="fas fa-plus-circle nav-icon"></i>
                                 <p>Registrar Orden de Producción</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="consultarOrdenProduccion.jsp" class="nav-link">
-                                <i class="fas fa-search nav-icon"></i>
-                                <p>Consultar Ordenes de Producción</p>
+                            <a href="registrarOrdenProduccion.jsp" class="nav-link">
+                                <i class="fas fa-plus-circle nav-icon"></i>
+                                <p>Detalle de Orden de Producción</p>
                             </a>
                         </li>
                     </ul>

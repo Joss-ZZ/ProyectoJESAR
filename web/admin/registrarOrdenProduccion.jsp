@@ -1,3 +1,6 @@
+<%@page import="java.util.LinkedList"%>
+<%@page import="MODELO.OrdenProduccion"%>
+<%@page import="MODELO.Conexion"%>
 <%@ include file="templates/header.jsp"%>
 <%@ include file="templates/barra.jsp"%>
 <%@ include file="templates/navegacion.jsp"%>
@@ -19,6 +22,21 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="container">
+                            <div class="form-group">
+                                    <label for="categoria" class="col-form-label">Categoria:</label>
+                                    <select name="categoria" id="id_orden_produccion">
+                                        <option >Elija una opción</option>
+                                        <%
+                                            Conexion conn = new Conexion();
+                                            OrdenProduccion ord = new OrdenProduccion(conn);
+                                            LinkedList<OrdenProduccion> OrdenProducciones = new LinkedList<>();
+                                            OrdenProducciones = ord.ListarOrdenProduccion();
+                                            for (OrdenProduccion or : OrdenProducciones) {
+                                        %>                                        
+                                        <option name="categoria" value="<%=or.getId_orden_prod()%>"><%=or.getId_orden_prod()%></option>                                      
+                                        <%}%>
+                                    </select>                                    
+                                </div>
                             <div class="row">
                                 <div class="col-lg-12">            
                                     <button id="btnAgregar" type="button" class="btn btn-primary">Agregar Producto</button>    
@@ -32,6 +50,7 @@
                                     <table id="listDetalleProductos" class="table table-bordered display nowrap" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
+                                                <th>Código Orden</th>
                                                 <th>Código Producto</th>
                                                 <th>id Serie</th>
                                                 <th>Serie</th>
@@ -51,13 +70,7 @@
                 </div>
             </div>
             <br>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">            
-                        <button id="btnRegistrarOrdenProduccion" type="button" class="btn btn-success">Registrar Orden de Producción</button>    
-                    </div>    
-                </div>    
-            </div> 
+            
 
 
             <!-- MODAL CREAR -->>                    
