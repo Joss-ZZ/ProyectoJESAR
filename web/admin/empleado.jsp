@@ -129,15 +129,8 @@
                                     <label for="categoria" class="col-form-label">Estado:</label>
                                     <select name="categoria" id="estado">
                                         <option >Elija una opción</option>
-                                        <%
-                                            Conexion conn1 = new Conexion();
-                                            Empleado emp = new Empleado(conn1);
-                                            LinkedList<Empleado> empleados = new LinkedList<>();
-                                            empleados = emp.ListarEmpleados();
-                                            for (Empleado e : empleados) {
-                                        %>                                        
-                                        <option name="categoria" value="<%=e.getId()%>"><%=e.getEstado()%></option>                                      
-                                        <%}%>
+                                        <option name="categoria" value="1">Activo</option> 
+                                        <option name="categoria" value="2">Inactivo</option> 
                                     </select>                                    
                                 </div>
                                 <div class="form-group">

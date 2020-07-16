@@ -3,6 +3,7 @@ $(document).ready(function () {
     accion = "Listar";
 
     tablaEmpleado = $('#listEmpleado').DataTable({
+        //responsive:true,
         "ajax": {
             "url": "/Admin-JESAR/ControladorEmpleado",
             "method": 'POST', //usamos el metodo POST
@@ -47,7 +48,7 @@ $(document).ready(function () {
         estado = $.trim($('#estado').val());
         privilegio = $.trim($('#privilegio').val());
         tipoEmpleado = $.trim($('#tipoEmpleado').val());
-        
+        alert(estado);
         $.ajax({
             url: "/Admin-JESAR/ControladorEmpleado",
             type: "POST",
@@ -86,11 +87,7 @@ $(document).ready(function () {
         fechaNacimiento = fila.find('td:eq(8)').text();
         tipoDocumento = fila.find('td:eq(9)').text();
         nDocumento = fila.find('td:eq(10)').text();
-        if(fila.find('td:eq(11)').text() === "Activo"){
-            estado = 1;
-        }else{
-            estado = 2;
-        }
+        estado = fila.find('td:eq(11)').text();
         privilegio = parseInt(fila.find('td:eq(12)').text());
         tipoEmpleado = fila.find('td:eq(13)').text();
         

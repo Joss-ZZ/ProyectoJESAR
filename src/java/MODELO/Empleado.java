@@ -22,20 +22,6 @@ public class Empleado {
     }
 
     public Empleado() {
-        this.id = 0;
-        this.tipoDocumento = 0;
-        this.tipoEmpleado = 0;
-        this.usuario = "";
-        this.contraseña = "";
-        this.nombres = "";
-        this.apellidos = "";
-        this.direccion = "";
-        this.telefono = "";
-        this.correo = "";
-        this.fecha_nac = "";
-        this.nDocumento = "";
-        this.estado = 0;
-        this.privilegio = 0;
     }
 
     public Empleado(int id, String usuario, String contrasena, String nombres,String apellidos,String direccion,String telefono,String correo,String fecha_nac,int tipoDocumento,String nDocumento,int estado_id,int privilegio,int tipoEmpleado) {
@@ -51,7 +37,7 @@ public class Empleado {
         this.correo = correo;
         this.fecha_nac = fecha_nac;
         this.nDocumento = nDocumento;
-        this.estado = estado;
+        this.estado = estado_id;
         this.privilegio = privilegio;
     }
      
@@ -244,6 +230,21 @@ public class Empleado {
                 conn.desconectar();
                 return null;
             } else if(accion.equalsIgnoreCase("Nuevo") || accion.equalsIgnoreCase("Editar")){
+                System.out.println(empleado.getId());
+                System.out.println(empleado.getUsuario());
+                System.out.println(empleado.getContraseña());
+                System.out.println(empleado.getNombres());
+                System.out.println(empleado.getApellidos());
+                System.out.println(empleado.getDireccion());
+                System.out.println(empleado.getTelefono());
+                System.out.println(empleado.getCorreo());
+                System.out.println(empleado.getFecha_nac());
+                System.out.println(empleado.getTipoDocumento());
+                System.out.println(empleado.getnDocumento());
+                System.out.println(empleado.getEstado()+"MAL");
+                System.out.println(empleado.getPrivilegio());
+                System.out.println(empleado.getTipoEmpleado());
+                System.out.println(accion);
                 cs.setInt(1, empleado.getId());
                 cs.setString(2, empleado.getUsuario());
                 cs.setString(3, empleado.getContraseña());

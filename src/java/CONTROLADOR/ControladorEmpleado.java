@@ -36,12 +36,12 @@ public class ControladorEmpleado extends HttpServlet {
             String direccion = request.getParameter("direccion");
             String telefono = request.getParameter("telefono");
             String correo = request.getParameter("correo");
-            String fecha_nac = request.getParameter("fechaNac");
-            int tipoDocumento = Integer.parseInt(request.getParameter("TipoDoc"));
-            String nDocumento = request.getParameter("nDoc");
+            String fecha_nac = request.getParameter("fechaNacimiento");
+            int tipoDocumento = Integer.parseInt(request.getParameter("tipoDocumento"));
+            String nDocumento = request.getParameter("nDocumento");
             int estado_id = Integer.parseInt(request.getParameter("estado"));
-            int privilegio = Integer.parseInt("privilegio");
-            int tipoEmpleado = Integer.parseInt(request.getParameter("TipoEmp"));
+            int privilegio = Integer.parseInt(request.getParameter("privilegio"));
+            int tipoEmpleado = Integer.parseInt(request.getParameter("tipoEmpleado"));
             
             Empleado empleado = new Empleado(id, usuario, contrasena, nombres, apellidos,direccion,telefono,correo,fecha_nac,tipoDocumento,nDocumento,estado_id,privilegio,tipoEmpleado);
             
@@ -57,7 +57,7 @@ public class ControladorEmpleado extends HttpServlet {
 
         if (request.getParameter("action").equalsIgnoreCase("Nuevo")) {
             String accion = request.getParameter("action");
-            int id = Integer.parseInt(request.getParameter("cod_emp"));
+            int id = 0;
             String usuario = request.getParameter("usuario");
             String contrasena = request.getParameter("password");
             String nombres = request.getParameter("nombres");
@@ -65,12 +65,12 @@ public class ControladorEmpleado extends HttpServlet {
             String direccion = request.getParameter("direccion");
             String telefono = request.getParameter("telefono");
             String correo = request.getParameter("correo");
-            String fecha_nac = request.getParameter("fechaNac");
-            int tipoDocumento = Integer.parseInt(request.getParameter("TipoDoc"));
-            String nDocumento = request.getParameter("nDoc");
+            String fecha_nac = request.getParameter("fechaNacimiento");
+            int tipoDocumento = Integer.parseInt(request.getParameter("tipoDocumento"));
+            String nDocumento = request.getParameter("nDocumento");
             int estado_id = Integer.parseInt(request.getParameter("estado"));
-            int privilegio = Integer.parseInt("privilegio");
-            int tipoEmpleado = Integer.parseInt(request.getParameter("TipoEmp"));
+            int privilegio = Integer.parseInt(request.getParameter("privilegio"));
+            int tipoEmpleado = Integer.parseInt(request.getParameter("tipoEmpleado"));
             
             Empleado empleado = new Empleado(id, usuario, contrasena, nombres, apellidos,direccion,telefono,correo,fecha_nac,tipoDocumento,nDocumento,estado_id,privilegio,tipoEmpleado);
             
