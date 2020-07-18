@@ -38,6 +38,7 @@
 <script src="/Admin-JESAR/admin/js/mainOrdenProduccion.js"></script>
 <script src="/Admin-JESAR/admin/js/mainDetalleOrdenProducto.js"></script>
 <script src="/Admin-JESAR/admin/js/mainEmpleado.js"></script>
+<script src="/Admin-JESAR/admin/js/mainOperarios.js"></script>
 
 <script>
   $(function () {

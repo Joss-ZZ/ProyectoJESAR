@@ -8,8 +8,10 @@ package MODELO;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 /**
  *
@@ -57,6 +59,26 @@ public class TipoOperario {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    public LinkedList<TipoOperario> ListarTipoOperarios(){
+        String sql = "SELECT *FROM Z_TIPO_OPERARIO";
+        LinkedList<TipoOperario> lista = new LinkedList<>();
+        try {
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                TipoOperario tipo_ope = new TipoOperario();
+                tipo_ope.setId(rs.getInt("id"));
+                tipo_ope.setDescripcion(rs.getString("descripcion"));
+                lista.add(tipo_ope);               
+            }
+            conn.desconectar();
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Problema en TipoOperario.ListarTipoOperario: "+e.getMessage());
+        }
+        return null;
+    }  
     
     public JsonArray MantenerTipoOperario(TipoOperario tipoOperario, String accion) {
         String sql = "{CALL PRC_MANTE_TIPO_OPE(?, ?, ?)}";

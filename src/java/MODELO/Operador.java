@@ -7,8 +7,10 @@ package MODELO;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,38 +19,31 @@ import java.util.List;
  * @author JhoxiZZ
  */
 public class Operador{
-    private float sueldo;
+
     private int id;
-    private String nombres, apellidos, direccion, telefono, correo, fecha_nac, dni, tipo_ope;
-    Conexion conn;
-    
-    public Operador(Conexion conn) {
-        this.conn = conn;
-    }
+    private String nombre;
+    private String apellidos;
+    private String tipo;
+    private String direccion;
+    private String telefono;
+    private String correo;
+    private String fechanac;
+    private String dni;
+    Conexion conn = new Conexion();
 
     public Operador() {
     }
-   
-    public Operador(float sueldo, int id, String nombres, String apellidos, String direccion, String telefono, String correo, String fecha_nac, String dni, String tipo_ope, Conexion conn) {
-        this.sueldo = sueldo;
+
+    public Operador(int id, String nombre, String apellidos, String tipo, String direccion, String telefono, String correo, String fechanac, String dni) {
         this.id = id;
-        this.nombres = nombres;
+        this.nombre = nombre;
         this.apellidos = apellidos;
+        this.tipo = tipo;
         this.direccion = direccion;
         this.telefono = telefono;
         this.correo = correo;
-        this.fecha_nac = fecha_nac;
+        this.fechanac = fechanac;
         this.dni = dni;
-        this.tipo_ope = tipo_ope;
-        this.conn = conn;
-    }
-
-    public float getSueldo() {
-        return sueldo;
-    }
-
-    public void setSueldo(float sueldo) {
-        this.sueldo = sueldo;
     }
 
     public int getId() {
@@ -59,12 +54,12 @@ public class Operador{
         this.id = id;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellidos() {
@@ -73,6 +68,14 @@ public class Operador{
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getDireccion() {
@@ -99,12 +102,12 @@ public class Operador{
         this.correo = correo;
     }
 
-    public String getFecha_nac() {
-        return fecha_nac;
+    public String getFechanac() {
+        return fechanac;
     }
 
-    public void setFecha_nac(String fecha_nac) {
-        this.fecha_nac = fecha_nac;
+    public void setFechanac(String fechanac) {
+        this.fechanac = fechanac;
     }
 
     public String getDni() {
@@ -115,18 +118,93 @@ public class Operador{
         this.dni = dni;
     }
 
-    public String getTipo_ope() {
-        return tipo_ope;
+    public Conexion getConn() {
+        return conn;
     }
 
-    public void setTipo_ope(String tipo_ope) {
-        this.tipo_ope = tipo_ope;
+    public void setConn(Conexion conn) {
+        this.conn = conn;
     }
 
-    public JsonArray ListarOperario(){
-        String sql="SELECT *FROM Z_OPERARIO";
-        //falta
+    public JsonArray MantenerOperador(Operador ope, String accion) {
+        String sql = "{CALL PRC_MANTE_OPERARIOS(?,?,?,?,?,?,?,?,?,?)}";
+        try {
+            CallableStatement cs = conn.getConnection().prepareCall(sql);
+            if (accion.equalsIgnoreCase("Eliminar")) {
+                cs.setInt(1, ope.getId());
+                cs.setString(2, "");
+                cs.setString(3, "");
+                cs.setString(4, "");
+                cs.setString(5, "");
+                cs.setString(6, "");
+                cs.setString(7, "");
+                cs.setString(8, "");
+                cs.setInt(9, 0);
+                cs.setString(10, accion);
+                cs.executeUpdate();
+                conn.desconectar();
+                return null;
+            } else if(accion.equalsIgnoreCase("Nuevo") || accion.equalsIgnoreCase("Editar")){
+                cs.setInt(1, ope.getId());
+                cs.setString(2, ope.getNombre());
+                cs.setString(3, ope.getApellidos());
+                cs.setString(4, ope.getDireccion());
+                cs.setString(5, ope.getTelefono());
+                cs.setString(6, ope.getCorreo());
+                cs.setString(7, ope.getFechanac());
+                cs.setString(8, ope.getDni());
+                cs.setInt(9, Integer.parseInt(ope.getTipo()));
+                cs.setString(10, accion);
+                ResultSet rs = cs.executeQuery();
+                JsonArray array = new JsonArray();
+                rs.next();
+                JsonObject item = new JsonObject();
+                item.addProperty("id", rs.getInt("ope.id"));
+                item.addProperty("nombre", rs.getString("ope.nombres"));
+                item.addProperty("apellidos", rs.getString("ope.apellidos"));
+                item.addProperty("id_tipo", rs.getInt("tipo.id"));
+                item.addProperty("tipo", rs.getString("tipo.descripcion"));
+                item.addProperty("direccion", rs.getString("ope.direccion"));
+                item.addProperty("telefono", rs.getString("ope.telefono"));
+                item.addProperty("correo", rs.getString("ope.correo"));
+                item.addProperty("fechanac", rs.getString("ope.fecha_nac"));
+                item.addProperty("dni", rs.getString("ope.dni"));
+                array.add(item);
+                conn.desconectar();
+                return array;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en Operador.MantenerOperador: " + ex.getMessage());
+        }
         return null;
     }
-      
+
+    public JsonArray ListarOperador(int id, String accion) {
+        String sql = "{CALL PRC_MANTE_OPERARIOS(0,'','','','','','','',0,?)}";
+        try {
+            CallableStatement cs = conn.getConnection().prepareCall(sql);
+            cs.setString(1, accion);
+            ResultSet rs = cs.executeQuery();
+            JsonArray array = new JsonArray();
+            while (rs.next()) {
+                JsonObject item = new JsonObject();
+                item.addProperty("id", rs.getInt("ope.id"));
+                item.addProperty("nombre", rs.getString("ope.nombres"));
+                item.addProperty("apellidos", rs.getString("ope.apellidos"));
+                item.addProperty("id_tipo", rs.getInt("tipo.id"));
+                item.addProperty("tipo", rs.getString("tipo.descripcion"));
+                item.addProperty("direccion", rs.getString("ope.direccion"));
+                item.addProperty("telefono", rs.getString("ope.telefono"));
+                item.addProperty("correo", rs.getString("ope.correo"));
+                item.addProperty("fechanac", rs.getString("ope.fecha_nac"));
+                item.addProperty("dni", rs.getString("ope.dni"));
+                array.add(item);
+            }
+            conn.desconectar();
+            return array;
+        } catch (Exception e) {
+            System.out.println("Error en Operador.ListarOperador: " + e.getMessage());
+        }
+        return null;
+    }
 }
