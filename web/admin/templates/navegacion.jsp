@@ -220,7 +220,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             
-                  <!--          <a href="${pageContext.request.contextPath}/ControladorOrdenCompraInsumo?accion=ListarOrdenCompraInsumo" class="nav-link"> -->
+           
                               <a href="OrdenCompraInsumo.jsp" class="nav-link">
                                 <i class="fas fa-plus-circle nav-icon"></i>
                                 <p>Registrar Orden de Compra Insumos</p>
@@ -230,6 +230,25 @@
                     </ul>
                 </li>
                 
+               <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-file-alt nav-icon"></i>
+                        <p>
+                           Gestionar Pedido
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+      
+                              <a href="ListarPedidos.jsp" class="nav-link">
+                                <i class="fas fa-plus-circle nav-icon"></i>
+                                <p>Registrar Pedido Cliente</p>
+                            </a>
+                        
+                        </li>
+                    </ul>
+                </li>
                 
                 
                 

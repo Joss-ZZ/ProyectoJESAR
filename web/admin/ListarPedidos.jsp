@@ -4,6 +4,8 @@
     Author     : PCGAMING
 --%>
 
+<%@page import="java.util.LinkedList"%>
+<%@page import="MODELO.Pedido"%>
 <%@ include file="templates/header.jsp"%>
 <%@ include file="templates/barra.jsp"%>
 <%@ include file="templates/navegacion.jsp"%>
@@ -16,74 +18,78 @@
 
     <div class="card-body">
     </div>
-    <!-- /.card-body --><section class="content">
+    <!-- /.card-body -->
+    <section class="content">
 
-        <!-- Default box -->
-        <div class="card">
+<% 
+                 Pedido listapedido =new  Pedido();
+                 LinkedList<Pedido> listapedi; 
+                 listapedi=listapedido.listapedido();
+                
 
-            <div class="card-header">
-                <h3 class="card-title">Lista de Pedidos </h3>
+%>
+
+      <div class="card-header text-center bg-cyan text-white">
+                <h3 class="card-title ">Lista de Pedidos-Cliente</h3>
             </div>
             <!-- /.card-header -->
             <br>
  
             <div class="container">
-                <form name="form_"action="/Admin-JESAR/ControladorOrdenCompraInsumo?accion=Nuevo" method="post">
-                       
-                                 
-                                    <div class="form-group col-4" >
-                                        <input type="hidden" id="fechaactual" class="form-control" name="fechaactual" > 
-                                        <input type="hidden" id="estado" class="form-control" name="estado" value="proceso" >    
-                                        <input type="hidden" id="horaactual" class="form-control" name="horaactual">    
-                                    </div>
+    
+                    <form action="/Admin-JESAR/admin/RegistrarPedido.jsp" method="POST">
+                          <input class="btn btn-primary" id="regpedido" type="submit" value="Registrar Pedido">
+                    </form>    
+                <br>
 
-                       <div class="col-lg-12">       
-                           <input class="btn btn-primary" id="generar" type="submit" value="Generar">
-                       </div>     
-                      
-                </form>       
             </div>
-
-            <br>
+        
+        <!-- Default box -->
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <table id="" class="table table-bordered display nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Fecha de Inicio</th>
-                                    <th>Hora</th>
-                                    <th>Estado</th>
+                                    <th>ID-PED</th>
+                                    <th>ORD-PROD</th>
+                                    <th style="display:none;">ID-CLIENTE</th>
+                                    <th>CLIENTE</th>
+                                    <th>DOCUMENTO</th>
+                                    <th>EMPLEADO</th>
+                                    <th>FECHA-EMISION</th>
+                                    <th>FECHA-ENTREGA</th>
+                                    <th>ESTADO</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>      
-                                  
+                                  <%for (int i = 0; i < listapedi.size(); i++) { %>  
                                   <tr>
-                                  
-                                    
-                                      <td><a   id="estadoo" class=" btn btn-info input"</a></td>  
-                                      
-                                      <td class="text-center">
-                                              <!-- enviar el id orden prodcuccion a registrardetallecomprainsumo .jsp -->
-                                         <form action="/Admin-JESAR/admin/ListarDetalleCompraInsumo.jsp" method="POST">
-                                                       <input type="hidden" id="enviarorden" name="enviarorden" >
-                                                       <input class="btn btn-danger" type="submit" value="DetalleOrden">   
-                                         </form>    
-                                         <br>
-                                          <!-- enviar el id orden prodcuccion a registrardetallecomprainsumo .jsp -->
-                                         <form name="lista" action="/Admin-JESAR/admin/registrardetallecomprainsumo.jsp" method="POST">
-                                                       <input type="hidden" id="enviarorden" name="enviarorden" >
-                                                       <input id="GenerarLista" class="btn btn-warning" type="submit" value="GenerarLista" >   
+                                      <td><%=listapedi.get(i).getId_pedido_cliente()%></td>    
+                                      <td><%=listapedi.get(i).getId_orden_prod()%></td>    
+                                      <td style="display:none;"><%=listapedi.get(i).getId_cliente()%></td>    
+                                      <td><%=listapedi.get(i).getCliente_nombre()%> , <%=listapedi.get(i).getCliente_apellido()%></td>    
+                                      <td><%=listapedi.get(i).getDocumento()%></td> 
+                                      <td style="display:none;"><%=listapedi.get(i).getId_empleado()%></td> 
+                                      <td><%=listapedi.get(i).getNombre_empleado()%></td>  
+                                      <td><%=listapedi.get(i).getFecha_emision()%></td>  
+                                      <td><%=listapedi.get(i).getFecha_entrega()%></td>  
+                                      <td><%=listapedi.get(i).getEstado()%></td>  
+                                      <td>
+                                          <%
+                                           int cod_pedido = listapedi.get(i).getId_pedido_cliente();
+                                          %>
+                                          <form name="lista" action="/Admin-JESAR/admin/ListarDetallePedido.jsp" method="POST">
+                                              <input type="hidden" id="enviarid_pedido" name="enviarid_pedido" value="<%=cod_pedido%>" >
+                                                       <input id="GenerarLista" class="btn btn-warning" type="submit" value="Detalle Orden-Produccion" >   
                                           </form>                   
 
-                           
                                       </td>
-                                       
                                   </tr>
-                             
+                                  <%}%>
                             </tbody>
+                            
                         </table> 
              
 

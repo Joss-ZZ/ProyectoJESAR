@@ -13,7 +13,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- /.card-header -->
-    <script src="admin/js/validar.js"> </script>
+ 
 
       <% 
                  DetalleCompraInsumo det=new DetalleCompraInsumo();

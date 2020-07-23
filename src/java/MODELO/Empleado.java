@@ -320,4 +320,26 @@ public class Empleado {
         }
         return null;
     }
+    
+    
+        public LinkedList<Empleado> consultarEmpleados(){
+        String sql = "SELECT *FROM Z_EMPLEADO";
+        LinkedList<Empleado> lista = new LinkedList<>();
+        try {
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Empleado empleado = new Empleado();
+                empleado.setId(rs.getInt("id"));
+                empleado.setNombres(rs.getString("nombres"));
+                empleado.setApellidos(rs.getString("apellidos"));
+                lista.add(empleado);               
+            }
+            conn.desconectar();
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Problema en Empleado.ConsultarEmpleados: "+e.getMessage());
+        }
+        return null;
+    }
 }

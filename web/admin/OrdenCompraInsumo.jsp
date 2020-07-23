@@ -108,18 +108,7 @@
                                                        <input id="GenerarLista" class="btn btn-warning" type="submit" value="GenerarLista" >   
                                           </form>                   
 
-                                        <script>
-                                    
-                                          function success() {
-                                             if(document.getElementById("estadoo").value==="finalizado") { 
-                                                document.getElementById('GenerarLista').disabled = true; 
-                                            } else { 
-                                                document.getElementById('GenerarLista').disabled = false;
-                                            }
-                                           }
-
-                                    
-                                        </script>
+                                  
 
                                       </td>
                                        

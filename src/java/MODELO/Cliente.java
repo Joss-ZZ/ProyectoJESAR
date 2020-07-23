@@ -10,6 +10,7 @@ import com.google.gson.JsonObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -211,4 +212,31 @@ public class Cliente {
         }
         return 0;
     }
+    
+    
+    
+      public LinkedList<Cliente> consultarClientes(){
+        String sql = "SELECT *FROM Z_CLIENTE";
+        LinkedList<Cliente> lista = new LinkedList<>();
+        try {
+            PreparedStatement ps = conn.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Cliente cliente = new Cliente();
+                cliente.setId(rs.getInt("id"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setApellidos(rs.getString("apellidos"));
+                cliente.setDocumento(rs.getString("documento"));
+                lista.add(cliente);               
+            }
+            conn.desconectar();
+            return lista;
+        } catch (Exception e) {
+            System.out.println("Problema en Cliente.ConsultarClientes: "+e.getMessage());
+        }
+        return null;
+    }
+    
+    
+    
 }
