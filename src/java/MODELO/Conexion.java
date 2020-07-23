@@ -16,15 +16,15 @@ import java.sql.SQLException;
 public class Conexion {
     static String bd = "JesarWeb";
     static String login = "root";
-    static String password = "admin";
-    static String url = "jdbc:mysql://localhost/"+bd;
+    static String password = "123456";
+    static String url = "jdbc:mysql://localhost:3306/"+bd;
     //Variable que guarda la conexion
     Connection conn = null;
     
     public Conexion(){
         try {
             //obtenemos el driver para mysql
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             //obtenemos la conexion
             conn = DriverManager.getConnection(url, login, password);
             if(conn != null){
